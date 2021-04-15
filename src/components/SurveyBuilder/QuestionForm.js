@@ -29,7 +29,7 @@ const QuestionForm = ({question, setQuestion}) => {
                     <input
                         className="custom-text-input"
                         type="text"
-                        value={question.text}
+                        value={question.prompt}
                         onChange={handleChangeText}
                     />
                 </Col>

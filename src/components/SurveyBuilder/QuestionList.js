@@ -7,7 +7,7 @@ const QuestionList = ({activeId, setActiveId, questions, listController}) => {
         <>
             {questions.map((question, i) => (
                 <SurveyQuestion
-                    key={question.id}
+                    key={i}
                     isActive={i===activeId}
                     setActive={() => setActiveId(i)}
                     question={question}

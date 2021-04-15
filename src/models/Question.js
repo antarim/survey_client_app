@@ -12,11 +12,10 @@ export default class Question {
     });
 
     constructor(params = {}) {
-        const { text, type, choice_set, id } = { ...Question.DEFAULTS, ...params };
-        this.text = text;
+        const { text, type, choice_set } = { ...Question.DEFAULTS, ...params };
+        this.prompt = text;
         this.type = type;
         this.choice_set = choice_set;
-        this.id = id || Math.random();
     }
 
     get hasOptions() {

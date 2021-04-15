@@ -24,7 +24,7 @@ const SurveyBuilder = ({initTitle, initQuestions, handleSurveySubmit}) => {
     }
 
     return (
-        <Container size="lg">
+        <Container size="xl">
             <SurveyTitle
                 title={title}
                 handleChangeTitle={handleChangeTitle}

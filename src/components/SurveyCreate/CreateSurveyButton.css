@@ -1,0 +1,12 @@
+.survey-create-button {
+    font-size: 24px;
+    padding: 10px 16px;
+}
+
+.survey-create-button .card {
+    background-color: aliceblue;
+}
+
+.survey-create-button .card:hover {
+    box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,24 @@
+.custom-text-input {
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.custom-text-input:hover, .custom-text-input:focus {
+    outline: none !important;
+    border-bottom: 1px solid black;
+}
+
+.custom-title-input {
+    font-size: 32px;
+    font-weight: 400;
+    width: 100%;
+    border: none;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+}
+
+.custom-title-input:hover, .custom-title-input:focus {
+    outline: none !important;
+    border-bottom: 3px solid black;
+}

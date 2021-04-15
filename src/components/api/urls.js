@@ -1,0 +1,1 @@
+export const SURVEYS_URL = "http://localhost:8000/api/surveys/";

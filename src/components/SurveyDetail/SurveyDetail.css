@@ -1,0 +1,13 @@
+.survey-detail {
+    font-size: 20px;
+    background-color: aliceblue;
+    text-align: left;
+    margin-top: 16px;
+    padding: 10px 10px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+}
+
+.survey-detail .row {
+    margin-top: 5px;
+}

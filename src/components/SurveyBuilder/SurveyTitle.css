@@ -1,0 +1,12 @@
+.survey-builder-header {
+    background-color: #fff;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border-radius: 5px;
+    border: 1px solid #c4c4c4;
+}
+
+.title-input {
+    padding: 10px 16px;
+    text-align: left;
+}

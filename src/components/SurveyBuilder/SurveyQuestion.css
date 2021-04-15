@@ -1,0 +1,16 @@
+.survey-builder-item {
+    background-color: #fff;
+    margin-bottom: 16px;
+    border-radius: 5px;
+    border: 1px solid #c4c4c4;
+    border-bottom: 6px solid rgba(0, 0, 0, 0.2);
+}
+
+.item-active {
+    border-bottom: 6px solid #75d3eb;
+}
+
+.button-bar {
+    padding: 10px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+}

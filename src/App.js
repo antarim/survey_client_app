@@ -1,25 +1,42 @@
-import logo from './logo.svg';
+import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {Container} from "react-bootstrap";
+
 import './App.css';
+import './components/css/containers.css';
+
+import TopNavbar from "./components/TopNavbar";
+import Footer from "./components/Footer";
+
+import HomePage from "./components/Pages/HomePage";
+import SurveysPage from "./components/Pages/SurveysPage";
+import CreateSurveyPage from "./components/Pages/CreateSurveyPage";
+import SurveyDetailPage from "./components/Pages/SurveyDetailPage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <Container fluid className="wrapper noPaddingX">
+                <TopNavbar/>
+
+                <Switch>
+                    <Route exact path="/">
+                        <HomePage/>
+                    </Route>
+                    <Route exact path="/surveys">
+                        <SurveysPage/>
+                    </Route>
+                    <Route exact path="/surveys/create" >
+                        <CreateSurveyPage/>
+                    </Route>
+                    <Route path="/surveys/:id">
+                        <SurveyDetailPage/>
+                    </Route>
+                </Switch>
+
+                <Footer/>
+            </Container>
+        </Router>
+    );
 }
 
 export default App;

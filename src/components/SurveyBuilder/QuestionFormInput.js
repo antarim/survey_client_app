@@ -4,16 +4,16 @@ import React from "react";
 const QuestionFormInput = ({question, listController}) => {
     return (
         <>
-            {question.choice_set.map((option, i) => (
+            {question.choiceSet.map((choice, i) => (
                 <Row xs={1} md={1} lg={1} key={i} className="question-form-row align-items-center">
                     <Col xl={9} className="div-mt-5">
                         <input
                             className="custom-text-input"
                             type="text"
                             placeholder="Введіть варіант відповіді..."
-                            name={option}
-                            value={option}
-                            onChange={e => listController.set(i, e.target.value)}
+                            name={choice.text}
+                            value={choice.text}
+                            onChange={e => listController.set(i, { order:i, text:e.target.value })}
                         />
                     </Col>
                     <Col xl={3} className="div-mt-5">
@@ -39,7 +39,12 @@ const QuestionFormInput = ({question, listController}) => {
             ))}
             <Row className="question-form-row">
                 <Col>
-                    <Button onClick={() => listController.add("")}>
+                    <Button onClick={
+                        () => listController.add({
+                            order:question.choiceSet.length,
+                            text: "Відповідь " + (question.choiceSet.length + 1)
+                        })}
+                    >
                         <i className="fas fa-plus icon"></i>
                         {' '}
                         Додати варіант

@@ -1,18 +1,18 @@
-.survey-item {
+.survey-list-item {
     padding: 10px 16px;
     margin-bottom: 10px;
 }
 
-.survey-item h4 {
+.survey-list-item h4 {
     margin-bottom: 8px;
     text-align: left;
 }
 
-.survey-item .card {
+.survey-list-item .card {
     background-color: aliceblue;
     height: 100%;
 }
 
-.survey-item .card:hover {
+.survey-list-item .card:hover {
     box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
 }

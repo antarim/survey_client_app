@@ -7,30 +7,34 @@ import './QuestionForm.css';
 import QuestionFormInput from "./QuestionFormInput";
 
 const QuestionForm = ({question, setQuestion}) => {
-    function handleChangeText(e) {
-        setQuestion(question.merge({text: e.target.value}));
+    function handleChangePrompt(e) {
+        setQuestion(question.merge({prompt: e.target.value}));
     }
 
     function handleChangeType(e) {
         setQuestion(question.merge({type: e.target.value}));
     }
 
-    function setOptions(choice_set) {
-        setQuestion(question.merge({choice_set}));
+    function setAnswerRequired(value) {
+        setQuestion(question.merge({answerRequired: value}));
     }
 
-    const listController = new ListController(question.choice_set, setOptions);
+    function setOptions(choiceSet) {
+        setQuestion(question.merge({choiceSet}));
+    }
+
+    const listController = new ListController(question.choiceSet, setOptions);
 
     return (
         <Col>
-            <Row className="question-form-row align-items-center">
+            <Row className="question-form-row align-items-baseline">
                 <Col lg={9}>
 
                     <input
                         className="custom-text-input"
                         type="text"
                         value={question.prompt}
-                        onChange={handleChangeText}
+                        onChange={handleChangePrompt}
                     />
                 </Col>
                 <Col lg={3}>
@@ -46,6 +50,14 @@ const QuestionForm = ({question, setQuestion}) => {
                                 </option>
                             ))}
                         </Form.Control>
+                    </Row>
+                    <Row className="justify-content-center">
+                        <Form.Switch
+                            id={"required-switch-" + Math.random()}
+                            label="Обов'язкова відповідь"
+                            checked={question.answerRequired}
+                            onChange={() => setAnswerRequired(!question.answerRequired)}
+                        />
                     </Row>
                 </Col>
             </Row>

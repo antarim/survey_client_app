@@ -5,17 +5,36 @@ export default class Question {
         TEXT: "Text"
     });
 
+    static toSubmitType = (type) => {
+        switch (type){
+            case Question.TYPES.SINGLE: {
+                return "SLO";
+            }
+            case Question.TYPES.MULTIPLE: {
+                return "SLM";
+            }
+            case Question.TYPES.TEXT: {
+                return "STA";
+            }
+            default: {
+                return "SLO";
+            }
+        }
+    }
+
     static DEFAULTS = Object.freeze({
-        text: "Нове питання",
+        prompt: "Нове питання",
         type: Question.TYPES.SINGLE,
-        choice_set: []
+        answerRequired: true,
+        choiceSet: [],
     });
 
     constructor(params = {}) {
-        const { text, type, choice_set } = { ...Question.DEFAULTS, ...params };
-        this.prompt = text;
+        const { prompt, type, answerRequired, choiceSet } = { ...Question.DEFAULTS, ...params };
+        this.prompt = prompt;
         this.type = type;
-        this.choice_set = choice_set;
+        this.answerRequired = answerRequired;
+        this.choiceSet = choiceSet;
     }
 
     get hasOptions() {
@@ -29,6 +48,15 @@ export default class Question {
         if (this.type === Question.TYPES.SINGLE) return "radio";
         if (this.type === Question.TYPES.MULTIPLE) return "checkbox";
         throw new Error("This question does not have an input type.");
+    }
+
+    get submitView() {
+        return {
+            prompt: this.prompt,
+            input_type: Question.toSubmitType(this.type),
+            answer_required: this.answerRequired,
+            choice_set: this.choiceSet,
+        }
     }
 
     merge(patch) {

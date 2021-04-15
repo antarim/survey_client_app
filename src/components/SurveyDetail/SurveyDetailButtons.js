@@ -4,7 +4,7 @@ import {Button, Col, Row} from "react-bootstrap";
 
 const SurveyDetailButtons = ({ handleSurveyEdit, handleSurveyDelete }) => {
     return (
-        <Row>
+        <Row className="justify-content-end">
             <Col sm="auto" className="div-mt-5">
                 <Button variant="primary" onClick={handleSurveyEdit}>
                     <i className="far fa-edit"></i>

@@ -1,16 +1,44 @@
+import {useHistory} from "react-router-dom";
 import SurveyBuilder from "../SurveyBuilder";
 import Question from "../../models/Question";
+import axios from "axios";
+import {SURVEYS_URL} from "../api/urls";
 
 const CreateSurveyPage = () => {
+    const history = useHistory();
+
     const initQuestions = [
         new Question({
             text: "Нове питання",
-            choice_set: ["Відповідь 1", "Відповідь 2"]
+            choiceSet: [
+                {
+                    order:0,
+                    text: "Відповідь 1"
+                },
+                {
+                    order:1,
+                    text: "Відповідь 2"
+                }
+            ]
         })
     ]
 
     const handleSurveySubmit = (survey) => {
-        console.log(survey);
+        const survey_data = {
+            title: survey.title,
+            question_set: survey.questionSet.map(question => question.submitView)
+        }
+        console.log(JSON.stringify(survey_data));
+
+        axios.post(SURVEYS_URL, JSON.stringify(survey_data), {
+            headers: { "Content-Type": "application/json" }
+        })
+            .then(() => {
+                history.push('/surveys');
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
     }
 
     return (

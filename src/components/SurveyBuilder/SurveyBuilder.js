@@ -19,7 +19,7 @@ const SurveyBuilder = ({initTitle, initQuestions, handleSurveySubmit}) => {
     const handleSubmit = () => {
         handleSurveySubmit({
             title: title,
-            question_set: questions
+            questionSet: questions
         })
     }
 
@@ -37,14 +37,14 @@ const SurveyBuilder = ({initTitle, initQuestions, handleSurveySubmit}) => {
                 listController={listController}
             />
 
-            <Row className="survey-builder-row justify-content-md-center">
+            <Row className="survey-builder-row justify-content-center">
                 <Button variant="primary" size="lg" onClick={() => listController.add(new Question())}>
                     <i className="fas fa-plus icon"></i>
                     {' '}
                     Додати питання
                 </Button>
             </Row>
-            <Row className="survey-builder-row justify-content-md-center">
+            <Row className="survey-builder-row justify-content-center">
                 <Button variant="success" size="lg" onClick={handleSubmit}>
                     <i className="fas fa-paper-plane"></i>
                     {' '}

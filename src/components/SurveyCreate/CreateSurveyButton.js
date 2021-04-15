@@ -10,7 +10,7 @@ const CreateSurveyButton = () => {
                 <Card>
                     <Card.Body>
                         <Card.Title>
-                            Створити нову анкету
+                            <h4>Створити нову анкету</h4>
                         </Card.Title>
                         <Link className="stretched-link" to='/surveys/create'>
                         </Link>

@@ -1,7 +1,7 @@
 import {Spinner} from "react-bootstrap";
 import {SurveyDetail} from "../SurveyDetail";
 import {useParams} from "react-router-dom";
-import {SURVEYS_URL} from "../api/urls";
+import {SURVEYS_URL} from "../../api/urls";
 import {useAxiosFetch} from "../../utils/hooks";
 
 const SurveyDetailPage = () => {

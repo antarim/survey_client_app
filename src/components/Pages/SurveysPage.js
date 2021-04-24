@@ -1,11 +1,11 @@
 import {Container, Spinner} from "react-bootstrap";
 import CreateSurveyButton from "../SurveyCreate/CreateSurveyButton";
 import SurveyList from "../SurveyList";
-import {SURVEYS_URL} from "../api/urls";
+import {SURVEYS_URL} from "../../api/urls";
 import {useAxiosFetch} from "../../utils/hooks";
 
 const SurveysPage = () => {
-    const {data: surveys, error, isLoading} = useAxiosFetch(SURVEYS_URL, 2000);
+    const {data: surveys, error, isLoading} = useAxiosFetch(SURVEYS_URL, 8000);
 
     return (
         <Container>

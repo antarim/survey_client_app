@@ -22,6 +22,23 @@ export default class Question {
         }
     }
 
+    static fromSubmitType = (type) => {
+        switch (type){
+            case "SLO": {
+                return Question.TYPES.SINGLE;
+            }
+            case "SLM": {
+                return Question.TYPES.MULTIPLE;
+            }
+            case "STA": {
+                return Question.TYPES.TEXT;
+            }
+            default: {
+                return Question.TYPES.SINGLE;
+            }
+        }
+    }
+
     static DEFAULTS = Object.freeze({
         prompt: "Нове питання",
         type: Question.TYPES.SINGLE,

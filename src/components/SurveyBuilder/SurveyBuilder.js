@@ -7,7 +7,7 @@ import {Button, Container, Row} from "react-bootstrap";
 import QuestionList from "./QuestionList";
 
 import './SurveyBuilder.css';
-import '../css/inputs.css';
+import '../styles/inputs.css';
 
 const SurveyBuilder = ({initTitle, initQuestions, handleSurveySubmit}) => {
     const [title, handleChangeTitle] = useInputValue(initTitle);

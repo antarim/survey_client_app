@@ -7,7 +7,7 @@ export const useInputValue = (initial) => {
     return [value, handleChangeValue];
 }
 
-export const useAxiosFetch = (url, timeout) => {
+export const useAxiosFetch = (url, timeout=8000) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);

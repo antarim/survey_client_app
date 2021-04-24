@@ -2,7 +2,7 @@ import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {Container} from "react-bootstrap";
 
 import './App.css';
-import './components/css/containers.css';
+import './components/styles/containers.css';
 
 import TopNavbar from "./components/TopNavbar";
 import Footer from "./components/Footer";
@@ -11,6 +11,7 @@ import HomePage from "./components/Pages/HomePage";
 import SurveysPage from "./components/Pages/SurveysPage";
 import CreateSurveyPage from "./components/Pages/CreateSurveyPage";
 import SurveyDetailPage from "./components/Pages/SurveyDetailPage";
+import SurveyPage from "./components/Pages/SurveyPage";
 
 function App() {
     return (
@@ -28,8 +29,11 @@ function App() {
                     <Route exact path="/surveys/create" >
                         <CreateSurveyPage/>
                     </Route>
-                    <Route path="/surveys/:id">
+                    <Route exact path="/surveys/:id">
                         <SurveyDetailPage/>
+                    </Route>
+                    <Route path="/surveys/:id/pass/:key">
+                        <SurveyPage/>
                     </Route>
                 </Switch>
 

@@ -2,7 +2,7 @@ import {useHistory} from "react-router-dom";
 import SurveyBuilder from "../SurveyBuilder";
 import Question from "../../models/Question";
 import axios from "axios";
-import {SURVEYS_URL} from "../api/urls";
+import {SURVEYS_URL} from "../../api/urls";
 
 const CreateSurveyPage = () => {
     const history = useHistory();

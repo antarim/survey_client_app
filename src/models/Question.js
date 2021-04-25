@@ -1,47 +1,9 @@
+import {QuestionTypes} from "../constants/Questions";
+
 export default class Question {
-    static TYPES = Object.freeze({
-        SINGLE: "One option",
-        MULTIPLE: "Multiple options",
-        TEXT: "Text"
-    });
-
-    static toSubmitType = (type) => {
-        switch (type){
-            case Question.TYPES.SINGLE: {
-                return "SLO";
-            }
-            case Question.TYPES.MULTIPLE: {
-                return "SLM";
-            }
-            case Question.TYPES.TEXT: {
-                return "STA";
-            }
-            default: {
-                return "SLO";
-            }
-        }
-    }
-
-    static fromSubmitType = (type) => {
-        switch (type){
-            case "SLO": {
-                return Question.TYPES.SINGLE;
-            }
-            case "SLM": {
-                return Question.TYPES.MULTIPLE;
-            }
-            case "STA": {
-                return Question.TYPES.TEXT;
-            }
-            default: {
-                return Question.TYPES.SINGLE;
-            }
-        }
-    }
-
     static DEFAULTS = Object.freeze({
         prompt: "Нове питання",
-        type: Question.TYPES.SINGLE,
+        type: QuestionTypes.SELECT_ONE,
         answerRequired: true,
         choiceSet: [],
     });
@@ -56,21 +18,21 @@ export default class Question {
 
     get hasOptions() {
         return (
-            this.type === Question.TYPES.SINGLE ||
-            this.type === Question.TYPES.MULTIPLE
+            this.type === QuestionTypes.SELECT_ONE ||
+            this.type === QuestionTypes.SELECT_MULTIPLE
         );
     }
 
     get inputType() {
-        if (this.type === Question.TYPES.SINGLE) return "radio";
-        if (this.type === Question.TYPES.MULTIPLE) return "checkbox";
+        if (this.type === QuestionTypes.SELECT_ONE) return "radio";
+        if (this.type === QuestionTypes.SELECT_MULTIPLE) return "checkbox";
         throw new Error("This question does not have an input type.");
     }
 
     get submitView() {
         return {
             prompt: this.prompt,
-            input_type: Question.toSubmitType(this.type),
+            input_type: this.type,
             answer_required: this.answerRequired,
             choice_set: this.choiceSet,
         }

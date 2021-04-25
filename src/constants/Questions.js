@@ -1,22 +1,22 @@
 export const QuestionTypes = {
     SHORT_ANSWER: 'STA',
+    RANGE: 'RNG',
     SELECT_ONE: 'SLO',
     SELECT_MULTIPLE: 'SLM',
-    RANGE: 'RNG',
 }
 
 export const QuestionDescriptions = [
     {
-        text: 'Коротка відповідь',
+        text: 'Коротка текстова відповідь',
         type: 'STA'
     }, {
+        text: 'Шкала',
+        type: 'RNG'
+    }, {
         text: 'Одна відповідь',
-        type: 'SL0'
+        type: 'SLO'
     }, {
         text: 'Декілька відповідей',
         type: 'SLM'
-    }, {
-        text: 'Range',
-        type: 'RNG'
     }
 ]

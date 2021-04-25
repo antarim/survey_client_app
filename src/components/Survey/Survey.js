@@ -3,11 +3,11 @@ import {Button, Container, Form, Row} from "react-bootstrap";
 import './Survey.css';
 import QuestionWrapper from "./QuestionWrapper";
 
-const Survey = ({survey, handleSubmit}) => {
-    // console.log(survey);
+const Survey = ({survey, handleSubmit, handleChange}) => {
     return (
         <Container className="survey">
             <Form onSubmit={handleSubmit}>
+
                 <header className="survey-title">
                     <h3>{survey.title}</h3>
                 </header>
@@ -15,7 +15,10 @@ const Survey = ({survey, handleSubmit}) => {
                 <div>
                     {survey.question_set.map(question => (
                         <Form.Group key={question.id}>
-                            <QuestionWrapper question={question}/>
+                            <QuestionWrapper
+                                question={question}
+                                handleChange={handleChange}
+                            />
                         </Form.Group>
                     ))}
                 </div>

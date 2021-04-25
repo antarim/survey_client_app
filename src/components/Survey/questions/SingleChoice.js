@@ -1,6 +1,11 @@
 import {Form, Row} from "react-bootstrap";
 
-const SingleChoice = ({ question_uuid, prompt, choice_set }) => {
+const SingleChoice = ({ question_uuid, prompt, choice_set, handleChange }) => {
+    const onCheckChange = (e) => {
+
+        handleChange(e.target.name, Number(e.target.value))
+    }
+
     return (
         <Form.Group controlId={question_uuid}>
             <Row className="no-gutters">
@@ -15,6 +20,8 @@ const SingleChoice = ({ question_uuid, prompt, choice_set }) => {
                         label={i + 1}
                         type="radio"
                         name={question_uuid}
+                        value={i + 1}
+                        onChange={onCheckChange}
                     />
                 ))}
             </Row>

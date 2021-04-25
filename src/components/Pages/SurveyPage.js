@@ -1,28 +1,44 @@
 import {useParams} from "react-router-dom";
 import {useAxiosFetch} from "../../utils/hooks";
 import {SURVEYS_URL} from "../../api/urls";
-import {Container} from "react-bootstrap";
+import {Container, Spinner} from "react-bootstrap";
 import Survey from "../Survey/Survey";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const SurveyPage = () => {
     const {id, key} = useParams();
     const {data: survey, error, isLoading} = useAxiosFetch(SURVEYS_URL + id, 8000);
-    const [submitting, setSubmitting] = useState(false);
+    const [surveyData, setSurveyData] = useState();
 
-    const handleSubmit = (e) => {
+    useEffect(() => {
+        if (survey) {
+
+            setSurveyData(survey.question_set.reduce((acc, question) => (
+                {...acc, [question.question_uuid]: '' }), {})
+            )
+        }
+        return () => {};
+    }, [survey]);
+
+    const handleChange = (uuid, value) => {
+        setSurveyData({...surveyData,
+            [uuid]: value
+        })
+    }
+
+    const handleSubmit = e => {
         e.preventDefault();
-        setSubmitting(true);
-
-        console.log(new FormData(e.form));
-        setTimeout(() => setSubmitting(false), 3000);
+        console.log(surveyData);
     }
 
     return (
         <Container>
+            {isLoading && <Spinner animation="border" variant="secondary"/>}
+            {error && <div>{error}</div>}
             {survey && <Survey
                 survey={survey}
                 handleSubmit={handleSubmit}
+                handleChange={handleChange}
             />}
         </Container>
     );

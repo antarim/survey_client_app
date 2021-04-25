@@ -1,0 +1,8 @@
+.range-tooltip {
+    margin: 0 10px;
+    /*padding: 0 5px;*/
+    border-radius: 0.25rem;
+    opacity: 0.8;
+    border: 1px solid black;
+
+}

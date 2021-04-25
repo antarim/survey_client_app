@@ -2,7 +2,7 @@ import {Image, Nav, Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {LinkContainer} from 'react-router-bootstrap';
 
-import logo from '../../leo64.svg';
+import logo from '../../assets/leo64.svg';
 
 import './TopNavbar.css';
 

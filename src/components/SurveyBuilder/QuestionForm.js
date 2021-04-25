@@ -1,10 +1,10 @@
 import React from "react";
-import Question from "../../models/Question";
 import ListController from "../../controllers/ListController";
 import {Col, Form, Row} from "react-bootstrap";
 
 import './QuestionForm.css';
 import QuestionFormInput from "./QuestionFormInput";
+import {QuestionDescriptions} from "../../constants/Questions";
 
 const QuestionForm = ({question, setQuestion}) => {
     function handleChangePrompt(e) {
@@ -12,6 +12,7 @@ const QuestionForm = ({question, setQuestion}) => {
     }
 
     function handleChangeType(e) {
+        // console.log(e.target.value);
         setQuestion(question.merge({type: e.target.value}));
     }
 
@@ -44,9 +45,9 @@ const QuestionForm = ({question, setQuestion}) => {
                                       value={question.type}
                                       onChange={handleChangeType}
                         >
-                            {Object.values(Question.TYPES).map(type => (
-                                <option key={type} value={type}>
-                                    {type}
+                            {QuestionDescriptions.map(obj => (
+                                <option key={obj.type} value={obj.type}>
+                                    {obj.text}
                                 </option>
                             ))}
                         </Form.Control>

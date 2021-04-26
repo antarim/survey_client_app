@@ -4,7 +4,8 @@ import {Col, Form, Row} from "react-bootstrap";
 
 import './QuestionForm.css';
 import QuestionFormInput from "./QuestionFormInput";
-import {QuestionDescriptions} from "../../constants/Questions";
+import {QuestionDescriptions, QuestionTypes} from "../../constants/Questions";
+import RangeQuestionForm from "./RangeQuestionForm";
 
 const QuestionForm = ({question, setQuestion}) => {
     function handleChangePrompt(e) {
@@ -66,6 +67,11 @@ const QuestionForm = ({question, setQuestion}) => {
                 <QuestionFormInput
                     question={question}
                     listController={listController}
+                />
+            )}
+            {question.type === QuestionTypes.RANGE && (
+                <RangeQuestionForm
+                    question={question}
                 />
             )}
         </Col>

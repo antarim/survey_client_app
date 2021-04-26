@@ -14,7 +14,7 @@ const TopNavbar = () => {
                     <Link to="/">
                         <Image src={logo} alt="Logo" height="40"/>
                         {' '}
-                        <b className="brand-text">NUWM Опитування</b>
+                        <b className="brand-text">Nuwm Survey</b>
                     </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>

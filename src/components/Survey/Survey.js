@@ -4,6 +4,10 @@ import './Survey.css';
 import QuestionWrapper from "./QuestionWrapper";
 
 const Survey = ({survey, handleSubmit, handleChange}) => {
+
+    // TODO: Validation of all received inputs
+    //  (either by name or something else)
+
     return (
         <Container className="survey">
             <Form onSubmit={handleSubmit}>

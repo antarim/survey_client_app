@@ -1,8 +1,8 @@
 import {useHistory} from "react-router-dom";
-import SurveyBuilder from "../SurveyBuilder";
-import Question from "../../models/Question";
+import SurveyBuilder from "../components/SurveyBuilder";
+import Question from "../models/Question";
 import axios from "axios";
-import {SURVEYS_URL} from "../../api/urls";
+import {SURVEYS_URL} from "../api/urls";
 
 const CreateSurveyPage = () => {
     const history = useHistory();
@@ -26,7 +26,7 @@ const CreateSurveyPage = () => {
     const handleSurveySubmit = (survey) => {
         const survey_data = {
             title: survey.title,
-            question_set: survey.questionSet.map(question => question.submitView)
+            question_set: survey.questionSet.map(question => question.snake_case)
         }
         console.log(JSON.stringify(survey_data));
 

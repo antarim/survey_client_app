@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import SurveyTitle from "./SurveyTitle";
-import {useInputValue} from "../../utils/hooks";
+import useInputValue from "../../hooks/useInputValue";
 import Question from "../../models/Question";
 import ListController from "../../controllers/ListController";
 import {Button, Container, Row} from "react-bootstrap";
@@ -22,6 +22,8 @@ const SurveyBuilder = ({initTitle, initQuestions, handleSurveySubmit}) => {
             questionSet: questions
         })
     }
+
+    // TODO: Create validation for simple forms
 
     return (
         <Container size="xl">

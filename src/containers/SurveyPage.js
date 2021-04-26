@@ -1,8 +1,8 @@
 import {useParams} from "react-router-dom";
-import {useAxiosFetch} from "../../utils/hooks";
-import {SURVEYS_URL} from "../../api/urls";
+import useAxiosFetch from "../hooks/useAxiosFetch";
+import {SURVEYS_URL} from "../api/urls";
 import {Container, Spinner} from "react-bootstrap";
-import Survey from "../Survey/Survey";
+import Survey from "../components/Survey/Survey";
 import {useEffect, useState} from "react";
 
 const SurveyPage = () => {

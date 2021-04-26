@@ -22,3 +22,22 @@
     outline: none !important;
     border-bottom: 3px solid black;
 }
+
+.custom-number-input {
+    font-size: 20px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.custom-number-input:hover, .custom-number-input:focus {
+    outline: none !important;
+    border-bottom: 1px solid black;
+}
+
+@media screen and (max-width: 992px){
+    .custom-number-input {
+        width: 50px;
+    }
+}
+

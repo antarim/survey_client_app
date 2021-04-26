@@ -1,8 +1,16 @@
 .range-tooltip {
     margin: 0 10px;
-    /*padding: 0 5px;*/
     border-radius: 0.25rem;
-    opacity: 0.8;
-    border: 1px solid black;
-
+    /*border: 1px solid black;*/
 }
+
+/*.range-tooltip:after {*/
+/*    content: " ";*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    right: 100%; !* To the left of the tooltip *!*/
+/*    margin-top: -5px;*/
+/*    border-width: 5px;*/
+/*    border-style: solid;*/
+/*    border-color: transparent black transparent transparent;*/
+/*}*/

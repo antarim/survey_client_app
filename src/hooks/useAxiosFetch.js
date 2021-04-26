@@ -1,13 +1,7 @@
-import { useState, useEffect } from 'react';
+import {useEffect, useState} from "react";
 import axios from "axios";
 
-export const useInputValue = (initial) => {
-    const [value, setValue] = useState(initial);
-    const handleChangeValue = e => setValue(e.target.value);
-    return [value, handleChangeValue];
-}
-
-export const useAxiosFetch = (url, timeout=8000) => {
+const useAxiosFetch = (url, timeout=8000) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -43,3 +37,5 @@ export const useAxiosFetch = (url, timeout=8000) => {
 
     return {data, isLoading, error};
 };
+
+export default useAxiosFetch;

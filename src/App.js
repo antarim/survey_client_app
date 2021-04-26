@@ -7,11 +7,11 @@ import './components/styles/containers.css';
 import TopNavbar from "./components/TopNavbar";
 import Footer from "./components/Footer";
 
-import HomePage from "./components/Pages/HomePage";
-import SurveysPage from "./components/Pages/SurveysPage";
-import CreateSurveyPage from "./components/Pages/CreateSurveyPage";
-import SurveyDetailPage from "./components/Pages/SurveyDetailPage";
-import SurveyPage from "./components/Pages/SurveyPage";
+import HomePage from "./containers/HomePage";
+import SurveysPage from "./containers/SurveysPage";
+import CreateSurveyPage from "./containers/CreateSurveyPage";
+import SurveyDetailPage from "./containers/SurveyDetailPage";
+import SurveyPage from "./containers/SurveyPage";
 
 function App() {
     return (

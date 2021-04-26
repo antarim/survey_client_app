@@ -3,7 +3,7 @@ import {QuestionTypes} from "../constants/Questions";
 export default class Question {
     static DEFAULTS = Object.freeze({
         prompt: "Нове питання",
-        type: QuestionTypes.SELECT_ONE,
+        type: QuestionTypes.RANGE,
         answerRequired: true,
         choiceSet: [],
     });
@@ -29,7 +29,7 @@ export default class Question {
         throw new Error("This question does not have an input type.");
     }
 
-    get submitView() {
+    get snake_case() {
         return {
             prompt: this.prompt,
             input_type: this.type,

@@ -16,7 +16,7 @@ const RangeAnswer = ({question_uuid, prompt, handleChange}) => {
 
     return (
         <Form.Group controlId={question_uuid}>
-            <Row className="no-gutters align-items-center">
+            <Row className="no-gutters align-items-center justify-content-center">
                 <Col sm={12}>
                     <Form.Label>{prompt}</Form.Label>
                 </Col>

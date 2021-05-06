@@ -6,6 +6,10 @@
     background-color: aliceblue;
 }
 
+.survey-create-button .card-title, h4 {
+    margin-bottom: 0;
+}
+
 .survey-create-button .card:hover {
     box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
 }

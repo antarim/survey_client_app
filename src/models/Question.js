@@ -5,13 +5,30 @@ export default class Question {
         prompt: "Нове питання",
         type: QuestionTypes.RANGE,
         answerRequired: true,
+        rangeMin: 1,
+        rangeMax: 5,
+        rangeStep: 1,
         choiceSet: [],
     });
 
     constructor(params = {}) {
-        const { prompt, type, answerRequired, choiceSet } = { ...Question.DEFAULTS, ...params };
+        const {
+            prompt,
+            type,
+            order,
+            rangeMin,
+            rangeMax,
+            rangeStep,
+            answerRequired,
+            choiceSet
+        } = {...Question.DEFAULTS, ...params};
+
         this.prompt = prompt;
         this.type = type;
+        this.order = order;
+        this.rangeMin = rangeMin;
+        this.rangeMax = rangeMax;
+        this.rangeStep = rangeStep;
         this.answerRequired = answerRequired;
         this.choiceSet = choiceSet;
     }
@@ -29,16 +46,7 @@ export default class Question {
         throw new Error("This question does not have an input type.");
     }
 
-    get snake_case() {
-        return {
-            prompt: this.prompt,
-            input_type: this.type,
-            answer_required: this.answerRequired,
-            choice_set: this.choiceSet,
-        }
-    }
-
     merge(patch) {
-        return new Question({ ...this, ...patch });
+        return new Question({...this, ...patch});
     }
 }

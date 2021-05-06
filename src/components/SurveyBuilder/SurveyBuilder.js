@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import SurveyTitle from "./SurveyTitle";
 import useInputValue from "../../hooks/useInputValue";
 import Question from "../../models/Question";
@@ -15,6 +15,11 @@ const SurveyBuilder = ({initTitle, initQuestions, handleSurveySubmit}) => {
     const [activeId, setActiveId] = useState(0);
 
     const listController = new ListController(questions, setQuestions);
+
+    // Updating question order on change
+    useEffect(() => {
+        questions.forEach((question, index) => question.order = index)
+    }, [questions]);
 
     const handleSubmit = () => {
         handleSurveySubmit({
@@ -40,7 +45,11 @@ const SurveyBuilder = ({initTitle, initQuestions, handleSurveySubmit}) => {
             />
 
             <Row className="survey-builder-row justify-content-center">
-                <Button variant="primary" size="lg" onClick={() => listController.add(new Question())}>
+                <Button
+                    variant="primary"
+                    size="lg"
+                    onClick={() => listController.add(new Question({order: questions.length}))}
+                >
                     <i className="fas fa-plus icon"></i>
                     {' '}
                     Додати питання

@@ -8,20 +8,19 @@ import {QuestionDescriptions, QuestionTypes} from "../../constants/Questions";
 import RangeQuestionForm from "./RangeQuestionForm";
 
 const QuestionForm = ({question, setQuestion}) => {
-    function handleChangePrompt(e) {
+    const handleChangePrompt = (e) => {
         setQuestion(question.merge({prompt: e.target.value}));
     }
 
-    function handleChangeType(e) {
-        // console.log(e.target.value);
+    const handleChangeType = (e) => {
         setQuestion(question.merge({type: e.target.value}));
     }
 
-    function setAnswerRequired(value) {
+    const setAnswerRequired = (value) => {
         setQuestion(question.merge({answerRequired: value}));
     }
 
-    function setOptions(choiceSet) {
+    const setOptions = (choiceSet) => {
         setQuestion(question.merge({choiceSet}));
     }
 
@@ -72,6 +71,7 @@ const QuestionForm = ({question, setQuestion}) => {
             {question.type === QuestionTypes.RANGE && (
                 <RangeQuestionForm
                     question={question}
+                    setQuestion={setQuestion}
                 />
             )}
         </Col>

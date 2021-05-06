@@ -4,10 +4,8 @@ import React, {useState} from "react";
 
 import './RangeAnswer.css';
 
-const RangeAnswer = ({question_uuid, prompt, handleChange}) => {
-    const min = 1
-    const max = 5
-    const [value, setValue] = useState(min);
+const RangeAnswer = ({question_uuid, range_min, range_max, range_step, prompt, handleChange}) => {
+    const [value, setValue] = useState(range_min);
     const onCheckChange = (e) => {
         setValue(e.target.value);
         // Passing question uuid as target.name
@@ -23,15 +21,18 @@ const RangeAnswer = ({question_uuid, prompt, handleChange}) => {
                 <Col sm={11}>
                     <RangeSlider
                         name={question_uuid}
-                        min={min}
-                        max={max}
+                        min={range_min}
+                        max={range_max}
+                        step={range_step}
                         value={value}
                         onChange={onCheckChange}
                     />
                 </Col>
                 <Col sm={1} className="text-center">
                     <Row className="no-gutters range-tooltip justify-content-center">
-                        {value}
+                        <div className="range-display">
+                            {value}
+                        </div>
                     </Row>
                 </Col>
             </Row>

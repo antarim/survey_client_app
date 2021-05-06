@@ -1,8 +1,6 @@
-import {Image, Nav, Navbar} from "react-bootstrap";
+import {Nav, Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {LinkContainer} from 'react-router-bootstrap';
-
-import logo from '../../assets/leo64.svg';
 
 import './TopNavbar.css';
 
@@ -10,11 +8,9 @@ const TopNavbar = () => {
     return (
         <header className='survey-navbar'>
             <Navbar collapseOnSelect expand="sm">
-                <Navbar.Brand>
+                <Navbar.Brand className="custom-brand">
                     <Link to="/">
-                        <Image src={logo} alt="Logo" height="40"/>
-                        {' '}
-                        <b className="brand-text">Nuwm Survey</b>
+                        <i className="brand-text">Nuwm Survey</i>
                     </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>

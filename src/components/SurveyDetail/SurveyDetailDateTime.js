@@ -10,10 +10,10 @@ const SurveyDetailDateTime = ({start_date, end_date}) => {
     return (
         <Row className="justify-content-md-center">
             <Col lg={6} className="align-self-start">
-                Початок опитування, <b>{startDate.toLocaleDateString()}, {startDate.toLocaleTimeString()}</b>
+                Початок опитування - {startDate.toLocaleDateString()}, {startDate.toLocaleTimeString()}
             </Col>
             <Col lg={6} className="align-self-end">
-                Кінець опитування, <b>{endDate.toLocaleDateString()}, {endDate.toLocaleTimeString()}</b>
+                Кінець опитування - {endDate.toLocaleDateString()}, {endDate.toLocaleTimeString()}
             </Col>
             <Col lg={12}>
                 <CustomProgressBar progressNow={progress}/>

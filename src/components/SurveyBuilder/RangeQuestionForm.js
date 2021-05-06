@@ -4,20 +4,23 @@ import RangeValueInput from "./RangeValueInput";
 import './RangeQuestionForm.css';
 import {useState} from "react";
 
-const RangeQuestionForm = ({question}) => {
+const RangeQuestionForm = ({question, setQuestion}) => {
     const [min, setMin] = useState(1);
     const [max, setMax] = useState(5);
     const [step, setStep] = useState(1);
 
-    // TODO: Updating question values (first create backend)
+    // TODO: Find a better solution!
     const handleMinChange = (e) => {
         setMin(e.target.value)
+        setQuestion(question.merge({rangeMin: Number(e.target.value)}))
     }
     const handleMaxChange = (e) => {
         setMax(e.target.value)
+        setQuestion(question.merge({rangeMax: Number(e.target.value)}))
     }
     const handleStepChange = (e) => {
         setStep(e.target.value)
+        setQuestion(question.merge({rangeStep: Number(e.target.value)}))
     }
 
     return (

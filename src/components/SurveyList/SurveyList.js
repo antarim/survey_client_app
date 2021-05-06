@@ -10,7 +10,7 @@ const SurveyList = ({surveys}) => {
                 <Col className="survey-list-item" key={survey.id}>
                     <Card>
                         <Card.Body>
-                            <Card.Title>
+                            <Card.Title className="">
                                 <h4>{survey.title}</h4>
                             </Card.Title>
                             <Link className="stretched-link" to={`/surveys/${survey.id}`}>

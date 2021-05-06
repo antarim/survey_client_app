@@ -10,7 +10,11 @@
     color: #256589;
 }
 
+.custom-brand {
+    align-items: center;
+}
+
 .brand-text {
     color: #256589;
-    font-size: 26px;
+    font-size: 36px;
 }

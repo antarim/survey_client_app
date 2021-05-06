@@ -4,40 +4,22 @@ import {Container} from "react-bootstrap";
 import './App.css';
 import './components/styles/containers.css';
 
-import TopNavbar from "./components/TopNavbar";
-import Footer from "./components/Footer";
-
+import SurveysContainer from "./containers/SurveysContainer";
 import HomePage from "./containers/HomePage";
-import SurveysPage from "./containers/SurveysPage";
-import CreateSurveyPage from "./containers/CreateSurveyPage";
-import SurveyDetailPage from "./containers/SurveyDetailPage";
-import SurveyPage from "./containers/SurveyPage";
+import SurveyContainer from "./containers/SurveyContainer";
+import NotFoundPage from "./containers/NotFoundPage";
 
 function App() {
     return (
         <Router>
             <Container fluid className="wrapper noPaddingX">
-                <TopNavbar/>
 
                 <Switch>
-                    <Route exact path="/">
-                        <HomePage/>
-                    </Route>
-                    <Route exact path="/surveys">
-                        <SurveysPage/>
-                    </Route>
-                    <Route exact path="/surveys/create" >
-                        <CreateSurveyPage/>
-                    </Route>
-                    <Route exact path="/surveys/:id">
-                        <SurveyDetailPage/>
-                    </Route>
-                    <Route path="/surveys/:id/pass/:key">
-                        <SurveyPage/>
-                    </Route>
+                    <Route exact path="/" component={HomePage}/>
+                    <Route path="/surveys" component={SurveysContainer}/>
+                    <Route path="/take/:id/:key" component={SurveyContainer}/>
+                    <Route path="*" component={NotFoundPage}/>
                 </Switch>
-
-                <Footer/>
             </Container>
         </Router>
     );

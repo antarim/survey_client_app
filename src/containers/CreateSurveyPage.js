@@ -3,6 +3,7 @@ import SurveyBuilder from "../components/SurveyBuilder";
 import Question from "../models/Question";
 import axios from "axios";
 import {SURVEYS_URL} from "../api/urls";
+import {toQuestionSubmitView} from "../helpers/questionHelpers";
 
 const CreateSurveyPage = () => {
     const history = useHistory();
@@ -10,23 +11,14 @@ const CreateSurveyPage = () => {
     const initQuestions = [
         new Question({
             text: "Нове питання",
-            choiceSet: [
-                {
-                    order:0,
-                    text: "Відповідь 1"
-                },
-                {
-                    order:1,
-                    text: "Відповідь 2"
-                }
-            ]
+            choiceSet: []
         })
     ]
 
     const handleSurveySubmit = (survey) => {
         const survey_data = {
             title: survey.title,
-            question_set: survey.questionSet.map(question => question.snake_case)
+            question_set: survey.questionSet.map(question => toQuestionSubmitView(question))
         }
         console.log(JSON.stringify(survey_data));
 

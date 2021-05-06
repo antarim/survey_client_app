@@ -1,11 +1,10 @@
 .survey-list-item {
     padding: 10px 16px;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
 }
 
-.survey-list-item h4 {
-    margin-bottom: 8px;
-    text-align: left;
+.survey-list-item .card-title, h4 {
+    margin-bottom: 0;
 }
 
 .survey-list-item .card {

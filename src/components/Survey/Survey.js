@@ -3,8 +3,7 @@ import {Button, Container, Form, Row} from "react-bootstrap";
 import './Survey.css';
 import QuestionWrapper from "./QuestionWrapper";
 
-const Survey = ({survey, handleSubmit, handleChange}) => {
-
+const Survey = ({survey, handleSubmit, handleChange, isDisabled}) => {
     // TODO: Validation of all received inputs
     //  (either by name or something else)
 
@@ -17,18 +16,24 @@ const Survey = ({survey, handleSubmit, handleChange}) => {
                 </header>
 
                 <div>
-                    {survey.question_set.map(question => (
+                    {survey.questionSet.map(question => (
                         <Form.Group key={question.id}>
                             <QuestionWrapper
                                 question={question}
                                 handleChange={handleChange}
+                                isDisabled={isDisabled}
                             />
                         </Form.Group>
                     ))}
                 </div>
 
                 <Row className="justify-content-center">
-                    <Button type="submit">Submit</Button>
+                    <Button
+                        disabled={isDisabled}
+                        type="submit"
+                    >
+                        Submit
+                    </Button>
                 </Row>
             </Form>
         </Container>

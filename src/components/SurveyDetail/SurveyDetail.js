@@ -4,7 +4,7 @@ import SurveyDetailButtons from './SurveyDetailButtons';
 
 import './SurveyDetail.css';
 
-const SurveyDetail = ({survey, handleDelete}) => {
+const SurveyDetail = ({survey, handleDelete, handleEdit, handlePreview}) => {
     return (
         <Container>
             <Row className="survey-detail">
@@ -19,7 +19,11 @@ const SurveyDetail = ({survey, handleDelete}) => {
                         start_date={survey.start_date}
                         end_date={survey.end_date}
                     />
-                    <SurveyDetailButtons handleSurveyDelete={handleDelete}/>
+                    <SurveyDetailButtons
+                        handleSurveyDelete={handleDelete}
+                        handleSurveyEdit={handleEdit}
+                        handleSurveyPreview={handlePreview}
+                    />
                 </Col>
             </Row>
         </Container>

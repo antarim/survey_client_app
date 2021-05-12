@@ -1,29 +1,21 @@
-import {Route, Switch} from "react-router-dom";
-import TopNavbar from "../components/TopNavbar";
-import SurveysPage from "./SurveysPage";
-import CreateSurveyPage from "./CreateSurveyPage";
-import SurveyDetailPage from "./SurveyDetailPage";
-import Footer from "../components/Footer";
+import {Container} from "react-bootstrap";
+import CreateSurveyButton from "../components/SurveyCreate/CreateSurveyButton";
+import SurveyList from "../components/SurveyList";
+import {SURVEYS_URL} from "../api/urls";
+import useAxiosFetch from "../hooks/useAxiosFetch";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const SurveysContainer = () => {
+    const {data: surveys, error, isLoading} = useAxiosFetch(SURVEYS_URL, 8000);
+
     return (
-        <>
-            <TopNavbar/>
+        <Container>
+            <CreateSurveyButton/>
 
-            <Switch>
-                <Route exact path="/surveys">
-                    <SurveysPage/>
-                </Route>
-                <Route exact path="/surveys/create" >
-                    <CreateSurveyPage/>
-                </Route>
-                <Route exact path="/surveys/:id">
-                    <SurveyDetailPage/>
-                </Route>
-            </Switch>
-
-            <Footer/>
-        </>
+            {isLoading && <LoadingSpinner/>}
+            {error && <div>{error}</div>}
+            {surveys && <SurveyList surveys={surveys}/>}
+        </Container>
     );
 }
 

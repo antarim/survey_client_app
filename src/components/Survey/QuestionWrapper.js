@@ -1,27 +1,23 @@
 import {QuestionTypes} from "../../constants/Questions";
 import ShortAnswer from "./questions/ShortAnswer";
-import {Row} from "react-bootstrap";
 import SingleChoice from "./questions/SingleChoice";
 import RangeAnswer from "./questions/RangeAnswer";
 
 
 const questionMap = {
-    [QuestionTypes.SHORT_ANSWER] : (props, handleChange) => {
-        return <ShortAnswer {...props} handleChange={handleChange}/>
+    [QuestionTypes.SHORT_ANSWER] : (props, handleChange, isDisabled) => {
+        return <ShortAnswer {...props} handleChange={handleChange} isDisabled={isDisabled}/>
     },
-    [QuestionTypes.SELECT_ONE] : (props, handleChange) => {
-        return <SingleChoice {...props} handleChange={handleChange}/>;
+    [QuestionTypes.SELECT_ONE] : (props, handleChange, isDisabled) => {
+        return <SingleChoice {...props} handleChange={handleChange} isDisabled={isDisabled}/>;
     },
-    [QuestionTypes.SELECT_MULTIPLE] : (props) => {
-        return (<Row className="no-gutters">{props.prompt}</Row>);
-    },
-    [QuestionTypes.RANGE] : (props, handleChange) => {
-        return <RangeAnswer {...props} handleChange={handleChange}/>;
+    [QuestionTypes.RANGE] : (props, handleChange, isDisabled) => {
+        return <RangeAnswer {...props} handleChange={handleChange} isDisabled={isDisabled}/>;
     }
 }
 
-const QuestionWrapper = ({question, handleChange}) => {
-    const QuestionComponent = questionMap[question.input_type](question, handleChange);
+const QuestionWrapper = ({question, handleChange, isDisabled}) => {
+    const QuestionComponent = questionMap[question.type](question, handleChange, isDisabled);
 
     return (
         <div className="survey-section">

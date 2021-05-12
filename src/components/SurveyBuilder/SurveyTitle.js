@@ -6,9 +6,7 @@ import './SurveyTitle.css';
 
 const { RangePicker } = DatePicker;
 
-const SurveyTitle = ({title, handleChangeTitle}) => {
-
-
+const SurveyTitle = ({title, handleChangeTitle, dateRange, handleDateChange}) => {
     return (
         <Row md={1} className="align-items-center survey-builder-header">
             <Col lg={8} className="title-input">
@@ -21,6 +19,8 @@ const SurveyTitle = ({title, handleChangeTitle}) => {
             </Col>
             <Col lg={4} className="date-range-input">
                 <RangePicker
+                    value={dateRange}
+                    onChange={handleDateChange}
                     size="large"
                 />
             </Col>

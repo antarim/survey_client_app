@@ -1,26 +1,31 @@
-import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {Container} from "react-bootstrap";
 
 import './App.css';
 import './components/styles/containers.css';
 
-import SurveysContainer from "./containers/SurveysContainer";
+import SurveysWrapper from "./containers/SurveysWrapper";
+import TakeSurveyWrapper from "./containers/TakeSurveyWrapper";
 import HomePage from "./containers/HomePage";
-import SurveyContainer from "./containers/SurveyContainer";
 import NotFoundPage from "./containers/NotFoundPage";
+import {ConfigProvider} from "antd";
+import ukUA from 'antd/lib/locale/uk_UA';
+
 
 function App() {
     return (
         <Router>
-            <Container fluid className="wrapper noPaddingX">
+            <ConfigProvider locale={ukUA}>
+                <Container fluid className="wrapper noPaddingX">
 
-                <Switch>
-                    <Route exact path="/" component={HomePage}/>
-                    <Route path="/surveys" component={SurveysContainer}/>
-                    <Route path="/take/:id/:key" component={SurveyContainer}/>
-                    <Route path="*" component={NotFoundPage}/>
-                </Switch>
-            </Container>
+                    <Switch>
+                        <Route exact path="/" component={HomePage}/>
+                        <Route path="/surveys" component={SurveysWrapper}/>
+                        <Route path="/take" component={TakeSurveyWrapper}/>
+                        <Route path="*" component={NotFoundPage}/>
+                    </Switch>
+                </Container>
+            </ConfigProvider>
         </Router>
     );
 }

@@ -1,6 +1,6 @@
 import {Button, Container, Row} from "react-bootstrap";
 
-import '../components/styles/NotFoundPage.css';
+import './NotFoundPage.css';
 import Footer from "../components/Footer";
 import {useHistory} from "react-router-dom";
 

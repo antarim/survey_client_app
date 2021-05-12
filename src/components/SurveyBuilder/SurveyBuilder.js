@@ -9,8 +9,9 @@ import QuestionList from "./QuestionList";
 import './SurveyBuilder.css';
 import '../styles/inputs.css';
 
-const SurveyBuilder = ({initTitle, initQuestions, handleSurveySubmit}) => {
+const SurveyBuilder = ({initTitle, initDate, initQuestions, handleSurveySubmit}) => {
     const [title, handleChangeTitle] = useInputValue(initTitle);
+    const [dateRange, setDateRange] = useState(initDate);
     const [questions, setQuestions] = useState(initQuestions);
     const [activeId, setActiveId] = useState(0);
 
@@ -21,9 +22,16 @@ const SurveyBuilder = ({initTitle, initQuestions, handleSurveySubmit}) => {
         questions.forEach((question, index) => question.order = index)
     }, [questions]);
 
+    const handleDateChange = (value, dateString) => {
+        setDateRange(value);
+    }
+
     const handleSubmit = () => {
         handleSurveySubmit({
             title: title,
+            // Return moment date values as string in specified format
+            startDate: dateRange[0].format("YYYY-MM-DD"),
+            endDate: dateRange[1].format("YYYY-MM-DD"),
             questionSet: questions
         })
     }
@@ -35,6 +43,8 @@ const SurveyBuilder = ({initTitle, initQuestions, handleSurveySubmit}) => {
             <SurveyTitle
                 title={title}
                 handleChangeTitle={handleChangeTitle}
+                dateRange={dateRange}
+                handleDateChange={handleDateChange}
             />
 
             <QuestionList

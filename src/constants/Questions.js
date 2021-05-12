@@ -2,7 +2,7 @@ export const QuestionTypes = {
     SHORT_ANSWER: 'STA',
     RANGE: 'RNG',
     SELECT_ONE: 'SLO',
-    SELECT_MULTIPLE: 'SLM',
+    // SELECT_MULTIPLE: 'SLM',
 }
 
 export const QuestionDescriptions = [
@@ -15,8 +15,9 @@ export const QuestionDescriptions = [
     }, {
         text: 'Одна відповідь',
         type: 'SLO'
-    }, {
-        text: 'Декілька відповідей',
-        type: 'SLM'
-    }
+    },
+    // {
+    //     text: 'Декілька відповідей',
+    //     type: 'SLM'
+    // }
 ]

@@ -1,6 +1,6 @@
 import {Col, Row} from "react-bootstrap";
 
-const RangeValueInput = ({label, value, handleChange}) => {
+const RangeValueInput = ({name, label, value, handleChange}) => {
     // TODO: Integer validation??
     return (
         <Row  className="align-items-center">
@@ -9,6 +9,7 @@ const RangeValueInput = ({label, value, handleChange}) => {
             </Col>
             <Col>
                 <input
+                    name={name}
                     type="number"
                     value={value}
                     onChange={handleChange}

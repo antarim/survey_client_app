@@ -25,6 +25,10 @@ const SurveyDetailContainer = () => {
         history.push(`/surveys/${id}/preview`);
     }
 
+    const handleResponses= () => {
+        history.push(`/surveys/${id}/responses`);
+    }
+
     return (
         <>
             {isLoading && <LoadingSpinner/>}
@@ -36,6 +40,7 @@ const SurveyDetailContainer = () => {
                     handleDelete={handleDelete}
                     handleEdit={handleEdit}
                     handlePreview={handlePreview}
+                    handleResponses={handleResponses}
                 />
             )}
         </>

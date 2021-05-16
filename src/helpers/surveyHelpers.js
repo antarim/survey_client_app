@@ -9,7 +9,7 @@ export const toSurveySubmitView = (survey) => {
     }
 }
 
-export const toSurveyAnswerView = (survey) => {
+export const toSurveyCamelCase = (survey) => {
     return {
         id: survey.id,
         title: survey.title,

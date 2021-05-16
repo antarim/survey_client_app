@@ -9,9 +9,11 @@ const SurveyList = ({surveys}) => {
             {surveys.map(survey => (
                 <Col className="survey-list-item" key={survey.id}>
                     <Card>
-                        <Card.Body>
-                            <Card.Title className="">
-                                <h4>{survey.title}</h4>
+                        <Card.Body className="survey-card-body">
+                            <Card.Title className="survey-card-title">
+                                <h4>
+                                    {survey.title.length > 25 ? survey.title.substring(0, 25) + '...' : survey.title}
+                                </h4>
                             </Card.Title>
                             <Link className="stretched-link" to={`/surveys/${survey.id}`}>
                             </Link>

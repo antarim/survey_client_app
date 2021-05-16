@@ -10,3 +10,7 @@ const axiosInstance = axios.create({
 export const deleteSurvey = (surveyId) => {
     return axiosInstance.delete(`/surveys/${surveyId}`);
 };
+
+export const getSurvey = (surveyId) => {
+    return axiosInstance.get(`/surveys/${surveyId}`);
+}

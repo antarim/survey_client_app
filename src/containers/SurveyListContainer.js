@@ -5,7 +5,7 @@ import {SURVEYS_URL} from "../api/urls";
 import useAxiosFetch from "../hooks/useAxiosFetch";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-const SurveysContainer = () => {
+const SurveyListContainer = () => {
     const {data: surveys, error, isLoading} = useAxiosFetch(SURVEYS_URL, 8000);
 
     return (
@@ -19,4 +19,4 @@ const SurveysContainer = () => {
     );
 }
 
-export default SurveysContainer;
+export default SurveyListContainer;

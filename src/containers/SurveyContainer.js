@@ -4,8 +4,8 @@ import {Container} from "react-bootstrap";
 import Survey from "../components/Survey/Survey";
 import {useEffect, useState} from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
-import {toSurveyAnswerView} from "../helpers/surveyHelpers";
-import {getResponseSubmitView} from "../helpers/responseHelpers";
+import {toSurveyCamelCase} from "../helpers/surveyHelpers";
+import {toResponseSubmitView} from "../helpers/responseHelpers";
 import axios from "axios";
 
 const SurveyContainer = ({id, uniqueKey, anonymous}) => {
@@ -17,7 +17,7 @@ const SurveyContainer = ({id, uniqueKey, anonymous}) => {
     // Converting data to camel case when received
     useEffect(() => {
         if (data) {
-            setSurvey(toSurveyAnswerView(data));
+            setSurvey(toSurveyCamelCase(data));
             return () => {
             };
         }
@@ -46,7 +46,7 @@ const SurveyContainer = ({id, uniqueKey, anonymous}) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        const response = getResponseSubmitView(survey, responseData, uniqueKey, anonymous);
+        const response = toResponseSubmitView(survey, responseData, uniqueKey, anonymous);
 
         setIsSubmitting(true);
 

@@ -1,0 +1,54 @@
+.survey-response-item {
+    margin-bottom: 10px;
+    text-align: left;
+    padding: 6px 8px;
+    font-size: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #c4c4c4;
+    border-bottom: 6px solid rgba(0, 0, 0, 0.2);
+}
+
+.survey-response-header {
+    text-align: left;
+    padding: 6px 8px;
+    font-size: 20px;
+    background-color: #fff;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #c4c4c4;
+    border-bottom: 0;
+}
+
+.survey-response-buttongroup-row {
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 20px;
+    background-color: #fff;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid #c4c4c4;
+    border-top: 0;
+}
+
+.answers-count {
+    padding: 6px 12px;
+    font-size: 16px;
+}
+
+.text-answer {
+    margin: 0 2px;
+    padding: 4px 12px;
+    background-color: #f7f7f7;
+    font-size: 18px;
+}
+
+.chart-select {
+    padding: 6px 12px;
+}
+
+.chart-select-button {
+    margin: 0 2px;
+}
+
+.chart-wrapper {
+    padding: 4px 8px;
+}

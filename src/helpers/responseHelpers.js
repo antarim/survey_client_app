@@ -1,6 +1,7 @@
 import {QuestionTypes} from "../constants/Questions";
+import {toAnswerCamelCase} from "./answerHelpers";
 
-export const getResponseSubmitView = (survey, responseData, uniqueKey, anonymous) => {
+export const toResponseSubmitView = (survey, responseData, uniqueKey, anonymous) => {
     return {
         survey: survey.id,
         unique_key: anonymous ? null : uniqueKey.id,
@@ -27,5 +28,16 @@ export const getResponseSubmitView = (survey, responseData, uniqueKey, anonymous
 
             return answer;
         })
+    }
+}
+
+export const toResponseCamelCase = (response) => {
+    return {
+        id: response.id,
+        surveyId: response.survey,
+        uniqueKey: response.unique_key,
+        answers: response.answers.map(ans => toAnswerCamelCase(ans)),
+        anonymous: response.anonymous,
+        createdAt: response.created_at,
     }
 }

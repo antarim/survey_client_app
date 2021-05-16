@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Survey from "../components/Survey/Survey";
 import {useEffect, useState} from "react";
-import {toSurveyAnswerView} from "../helpers/surveyHelpers";
+import {toSurveyCamelCase} from "../helpers/surveyHelpers";
 
 const SurveyPreviewContainer = () => {
     const {id} = useParams();
@@ -14,7 +14,7 @@ const SurveyPreviewContainer = () => {
 
     useEffect(() => {
         if (data) {
-            setSurvey(toSurveyAnswerView(data));
+            setSurvey(toSurveyCamelCase(data));
             return () => {
             };
         }

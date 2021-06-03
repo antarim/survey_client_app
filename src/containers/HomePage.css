@@ -1,0 +1,18 @@
+.home-page-container {
+    padding-top: 24px;
+    max-width: 720px;
+}
+
+.home-block {
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+}
+
+.home-logo {
+    padding: 6px;
+}
+
+.login {
+    padding: 16px 8px;
+    text-align: left;
+}

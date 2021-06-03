@@ -7,11 +7,13 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import {toSurveyCamelCase} from "../helpers/surveyHelpers";
 import {toResponseSubmitView} from "../helpers/responseHelpers";
 import axios from "axios";
+import SurveySuccessful from "../components/Survey/SurveySuccessful";
 
 const SurveyContainer = ({id, uniqueKey, anonymous}) => {
     const {data, error, isLoading} = useAxiosFetch(SURVEYS_URL + id, 8000);
     const [survey, setSurvey] = useState();
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
     const [responseData, setResponseData] = useState();
 
     // Converting data to camel case when received
@@ -54,11 +56,20 @@ const SurveyContainer = ({id, uniqueKey, anonymous}) => {
             headers: {"Content-Type": "application/json"}
         })
             .then(() => {
+                setSubmitted(true);
                 console.log("Submit successful!");
             })
             .catch(err => {
                 console.log(err.message);
             })
+    }
+
+    if (submitted) {
+        return (
+            <Container>
+                <SurveySuccessful/>
+            </Container>
+        );
     }
 
     return (

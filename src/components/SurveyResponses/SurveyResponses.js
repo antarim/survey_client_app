@@ -1,6 +1,7 @@
 import ResponsesStatsHeader from "./ResponsesStatsHeader";
 import './SurveyResponses.css';
 import QuestionStatsList from "./QuestionStatsList";
+import {useRef} from "react";
 
 const SurveyResponses = ({survey, responses}) => {
     // Get all answers from responses
@@ -22,17 +23,22 @@ const SurveyResponses = ({survey, responses}) => {
 
     const answersData = getGroupedByQuestion(answers);
 
+    const responsesRef = useRef();
+
     return (
         <>
-            <ResponsesStatsHeader
-                title={survey.title}
-                responsesCount={responses.length}
-            />
-            <QuestionStatsList
-                answersData={answersData}
-                getQuestionByIndex={getQuestionByIndex}
-            />
+            <div ref={responsesRef}>
+                <ResponsesStatsHeader
+                    title={survey.title}
+                    responsesCount={responses.length}
+                />
+                <QuestionStatsList
+                    answersData={answersData}
+                    getQuestionByIndex={getQuestionByIndex}
+                />
+            </div>
         </>
+
     );
 }
 

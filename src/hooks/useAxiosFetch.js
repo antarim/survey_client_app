@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import getAxiosInstance from "../api/axios";
 
-const useAxiosFetch = (url, timeout=8000) => {
+const useAxiosFetch = (url, timeout = 8000) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -9,23 +10,23 @@ const useAxiosFetch = (url, timeout=8000) => {
     useEffect(() => {
         let unmounted = false;
         let source = axios.CancelToken.source();
-        axios.get(url, {
+        const instance = getAxiosInstance()
+        instance.get(url, {
             cancelToken: source.token,
             timeout: timeout
-        })
-            .then(res => {
-                if (!unmounted) {
-                    setData(res.data);
-                    setIsLoading(false);
-                }
-            }).catch(function (e) {
+        }).then(res => {
+            if (!unmounted) {
+                setData(res.data);
+                setIsLoading(false);
+            }
+        }).catch((e) => {
             if (!unmounted) {
                 setError(true);
                 setIsLoading(false);
                 if (axios.isCancel(e)) {
-                    console.log(`request cancelled:${e.message}`);
+                    console.log(`Request cancelled: ${e.message}`);
                 } else {
-                    console.log("another error happened:" + e.message);
+                    console.log(`Another error happened: ${e.message}`);
                 }
             }
         });

@@ -5,8 +5,8 @@ import SurveyBuilder from "../components/SurveyBuilder";
 import moment from "moment";
 import {toQuestionEditView} from "../helpers/questionHelpers";
 import {toSurveySubmitView} from "../helpers/surveyHelpers";
-import axios from "axios";
 import LoadingSpinner from "../components/LoadingSpinner";
+import {surveys} from "../api";
 
 const SurveyEditContainer = () => {
     const {id} = useParams();
@@ -14,13 +14,11 @@ const SurveyEditContainer = () => {
     const history = useHistory();
 
     const handleSurveySubmit = (survey) => {
-        const survey_data = toSurveySubmitView(survey);
+        const surveyData = toSurveySubmitView(survey);
 
         // TODO: Change to axios instance
         //  (even better, function from api)
-        axios.put(SURVEYS_URL + id, JSON.stringify(survey_data), {
-            headers: {"Content-Type": "application/json"}
-        })
+        surveys.update(surveyData)
             .then(() => {
                 history.push(`/surveys/${id}`);
             })

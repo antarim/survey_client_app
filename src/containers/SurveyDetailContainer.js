@@ -2,7 +2,7 @@ import {SurveyDetail} from "../components/SurveyDetail";
 import {useHistory, useParams} from "react-router-dom";
 import {SURVEYS_URL} from "../api/urls";
 import useAxiosFetch from "../hooks/useAxiosFetch";
-import {deleteSurvey} from "../api";
+import {surveys} from "../api";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const SurveyDetailContainer = () => {
@@ -11,7 +11,7 @@ const SurveyDetailContainer = () => {
     const history = useHistory();
 
     const handleDelete = () => {
-        deleteSurvey(id)
+        surveys.remove(id)
             .then(() => {
                 history.push('/surveys');
             });

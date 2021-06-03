@@ -10,7 +10,6 @@ const SingleChoice = ({uuid, prompt, choiceSet, handleChange, isDisabled }) => {
         <Form.Group controlId={uuid}>
             <Row className="no-gutters">
                 <Form.Label>{prompt}</Form.Label>
-
             </Row>
             <Row className="no-gutters">
                 {choiceSet.map((choice, i) => (

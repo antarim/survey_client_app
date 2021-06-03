@@ -2,10 +2,12 @@ import {Button, Col, Row} from "react-bootstrap";
 import {useState} from "react";
 import {ChartTypes} from "../../../constants/Charts";
 import NumberAnswerChart from "./NumberAnswerChart";
+import {range, round, mean, countBy} from "lodash";
 
 const NumberAnswerStats = ({answerData, question}) => {
-    const [chartType, setChartType] = useState(ChartTypes.BAR_CHART);
+    const [chartType, setChartType] = useState(ChartTypes.PIE_CHART);
 
+    // Plain list of numbers [1, 2, 4, 3, 2, and so on]
     const numberAnswers = [];
     answerData.forEach(answer => {
         if (answer.numberAnswer) {
@@ -14,30 +16,33 @@ const NumberAnswerStats = ({answerData, question}) => {
     });
 
     const getData = () => {
+        /**/
         // Range from 1 to rangeMax
-        const range = [...Array(question.rangeMax).keys()].map(x => ++x);
-        return range.map((rangeVal) => {
+        const dataRange = range(question.rangeMin, question.rangeMax + 1)
+        // Count number of entries of rangeValue in numberAnswers
+        const dataCount = countBy(numberAnswers);
+
+        return dataRange.map(rangeVal => {
             // Percentage of answers is current value
-            const count = (numberAnswers.filter(v => v === rangeVal).length / numberAnswers.length * 100);
-            const countRounded = Math.round(count * 100) / 100;
+            const count = (dataCount[rangeVal] / numberAnswers.length * 100);
+            const countRounded = round(count, 2);
 
             return {
                 name: rangeVal,
-                value: countRounded
+                value: countRounded ? countRounded : 0
             }
         });
     }
 
     const data = getData();
 
+    const averageValue = round(mean(numberAnswers), 2);
+
     return (
         <Row className="survey-response-item">
             <Col>
                 <Row>
                     {question.prompt}
-                </Row>
-                <Row className="answers-count">
-                    Відповідей: {numberAnswers.length}
                 </Row>
                 <Row className="chart-select">
                     <Button
@@ -58,10 +63,19 @@ const NumberAnswerStats = ({answerData, question}) => {
                     </Button>
                 </Row>
                 <Row className="chart-wrapper">
-                    <NumberAnswerChart
-                        data={data}
-                        chartType={chartType}
-                    />
+                    <Col>
+                        <NumberAnswerChart
+                            data={data}
+                            chartType={chartType}
+                        />
+                    </Col>
+                    <Col>
+                        <Row className="answers-count">
+                            Відповідей: {numberAnswers.length}
+                            <br/>
+                            Середня значення: {averageValue}
+                        </Row>
+                    </Col>
                 </Row>
             </Col>
         </Row>

@@ -16,6 +16,17 @@
     border-radius: 5px;
 }
 
+.survey-successful {
+    font-size: 20px;
+    padding: 10px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+}
+
+.survey-successful-container {
+    padding: 10px;
+}
+
 .question {
     padding: 12px 10px;
     background-color: #fff;

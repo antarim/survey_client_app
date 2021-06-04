@@ -1,6 +1,6 @@
-import getAxiosInstance from "./axios";
+import axiosInstance from "./axios";
 
 
 const create = responseData => {
-    return getAxiosInstance().post(`/responses/`, JSON.stringify(responseData));
+    return axiosInstance.post(`/responses/`, JSON.stringify(responseData));
 }

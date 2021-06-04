@@ -10,7 +10,7 @@ import TakeSurveyWrapper from "./containers/TakeSurveyWrapper";
 import HomePage from "./containers/HomePage";
 import NotFoundPage from "./containers/NotFoundPage";
 import {useEffect, useState} from "react";
-import {axiosInstance} from "./api/axios";
+import axiosInstance from "./api/axios";
 import {PrivateRoute} from "./components/PrivateRoute";
 import LoadingSpinner from "./components/LoadingSpinner";
 
@@ -20,10 +20,9 @@ function App() {
 
     useEffect(() => {
         axiosInstance.get('/is_authenticated/')
-            .then(res => {
+            .then(() => {
                 setIsAuthenticated(true);
                 setIsLoading(false);
-
             })
             .catch(() => {
                 setIsAuthenticated(false);

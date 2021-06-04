@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import getAxiosInstance from "../api/axios";
+import axiosInstance from "../api/axios";
 
 const useAxiosFetch = (url, timeout = 8000) => {
     const [data, setData] = useState(null);
@@ -10,8 +10,7 @@ const useAxiosFetch = (url, timeout = 8000) => {
     useEffect(() => {
         let unmounted = false;
         let source = axios.CancelToken.source();
-        const instance = getAxiosInstance()
-        instance.get(url, {
+        axiosInstance.get(url, {
             cancelToken: source.token,
             timeout: timeout
         }).then(res => {

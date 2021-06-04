@@ -1,24 +1,24 @@
-import getAxiosInstance from "./axios";
+import axiosInstance from "./axios";
 
 
 const getAll = () => {
-    return getAxiosInstance().get('/surveys/');
+    return axiosInstance.get('/surveys/');
 }
 
 const detail = surveyId => {
-    return getAxiosInstance().get(`/surveys/${surveyId}`);
+    return axiosInstance.get(`/surveys/${surveyId}`);
 }
 
 const create = surveyData => {
-    return getAxiosInstance().post(`/surveys/`, JSON.stringify(surveyData));
+    return axiosInstance.post(`/surveys/`, JSON.stringify(surveyData));
 }
 
 const update = (surveyId, surveyData) => {
-    return getAxiosInstance().put(`/surveys/${surveyId}`, JSON.stringify(surveyData));
+    return axiosInstance.put(`/surveys/${surveyId}`, JSON.stringify(surveyData));
 }
 
 const remove = surveyId => {
-    return getAxiosInstance().delete(`/surveys/${surveyId}`);
+    return axiosInstance.delete(`/surveys/${surveyId}`);
 }
 
 export const surveys = {

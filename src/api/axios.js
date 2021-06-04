@@ -1,8 +1,9 @@
 import axios from "axios";
 import {getAccessToken} from "../services/tokenService";
+import {API_URL} from "./urls";
 
-export const axiosInstance = axios.create({
-    baseURL: "http://localhost:8000/api",
+const axiosInstance = axios.create({
+    baseURL: API_URL,
     headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + getAccessToken()
@@ -20,15 +21,5 @@ axiosInstance.interceptors.request.use((config) => {
     return config;
 })
 
-const getAxiosInstance = () => {
-    return axios.create({
-        baseURL: "http://localhost:8000/api",
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + getAccessToken()
-        }
-    });
-}
 
-
-export default getAxiosInstance;
+export default axiosInstance;

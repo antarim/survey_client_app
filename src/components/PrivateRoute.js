@@ -1,17 +1,13 @@
 import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import {getAccessToken} from "../services/tokenService";
-import {checkAuthentication} from "../services/authService";
 
-export const PrivateRoute = ({component: Component, ...rest}) => {
+export const PrivateRoute = ({component: Component, isAuthenticated, ...rest}) => {
     return (
         <Route
             {...rest}
             render={props => {
-                checkAuthentication().then(res => {})
-
-                // console.log("In private route!")
-                return getAccessToken()
+                console.log(`in route ${isAuthenticated}`);
+                return isAuthenticated
                     ? (<Component/>)
                     : (<Redirect to={{
                         pathname: '/',

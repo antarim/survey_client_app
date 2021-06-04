@@ -4,7 +4,6 @@ export const setTokens = tokensData => {
 }
 
 export const getAccessToken = () => {
-    // Change way checking if access token is present
     return localStorage.getItem('accessToken');
 }
 

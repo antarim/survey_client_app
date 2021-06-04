@@ -9,18 +9,50 @@ import SurveysWrapper from "./containers/SurveysWrapper";
 import TakeSurveyWrapper from "./containers/TakeSurveyWrapper";
 import HomePage from "./containers/HomePage";
 import NotFoundPage from "./containers/NotFoundPage";
+import {useEffect, useState} from "react";
+import {axiosInstance} from "./api/axios";
+import {PrivateRoute} from "./components/PrivateRoute";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        axiosInstance.get('/is_authenticated/')
+            .then(res => {
+                if (res.data.access) {
+                    setIsAuthenticated(true);
+                    setIsLoading(false);
+                } else {
+                    setIsLoading(false);
+                }
+            })
+            .catch(() => {
+                setIsAuthenticated(false);
+                setIsLoading(false);
+            })
+        return () => {
+        };
+    }, []);
+
+    console.log(isAuthenticated);
+
     return (
         <Router>
             <ConfigProvider locale={ukUA}>
                 <Container fluid className="wrapper noPaddingX">
-                    <Switch>
-                        <Route exact path="/" component={HomePage}/>
-                        <Route path="/surveys" component={SurveysWrapper}/>
-                        <Route path="/take" component={TakeSurveyWrapper}/>
-                        <Route path="*" component={NotFoundPage}/>
-                    </Switch>
+                    {isLoading
+                        ? (<LoadingSpinner/>)
+                        : (
+                            <Switch>
+                                <Route exact path="/" component={HomePage}/>
+                                <PrivateRoute path="/surveys" isAuthenticated={isAuthenticated} component={SurveysWrapper}/>
+                                <Route path="/take" component={TakeSurveyWrapper}/>
+                                <Route path="*" component={NotFoundPage}/>
+                            </Switch>
+                        )}
+
                 </Container>
             </ConfigProvider>
         </Router>

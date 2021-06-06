@@ -4,7 +4,7 @@ import { Col, Container, Row} from "react-bootstrap";
 import './HomePage.css';
 import LoginForm from "../components/LoginForm";
 
-const HomePage = () => {
+const HomePage = ({setIsAuthenticated}) => {
     return (
         <>
             <Container className="home-page-container">
@@ -16,7 +16,9 @@ const HomePage = () => {
                             </h2>
                         </Col>
                         <Col className="login">
-                            <LoginForm/>
+                            <LoginForm
+                                setIsAuthenticated={setIsAuthenticated}
+                            />
                         </Col>
                     </Row>
                 </Container>

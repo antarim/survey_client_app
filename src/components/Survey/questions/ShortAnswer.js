@@ -12,7 +12,7 @@ const ShortAnswer = ({uuid, prompt, handleChange, answerRequired, isDisabled}) =
     return (
         <Form.Group controlId={uuid}>
             <Row className="no-gutters">
-                <Form.Label>{prompt}</Form.Label>
+                <Form.Label>{prompt}{answerRequired && '*'}</Form.Label>
             </Row>
             <Row className="no-gutters text-area-wrapper">
                 <TextArea

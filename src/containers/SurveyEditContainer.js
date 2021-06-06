@@ -6,7 +6,7 @@ import moment from "moment";
 import {toQuestionEditView} from "../helpers/questionHelpers";
 import {toSurveySubmitView} from "../helpers/surveyHelpers";
 import LoadingSpinner from "../components/LoadingSpinner";
-import {surveys} from "../api";
+import SurveysApi from "../api";
 
 const SurveyEditContainer = () => {
     const {id} = useParams();
@@ -16,9 +16,7 @@ const SurveyEditContainer = () => {
     const handleSurveySubmit = (survey) => {
         const surveyData = toSurveySubmitView(survey);
 
-        // TODO: Change to axios instance
-        //  (even better, function from api)
-        surveys.update(surveyData)
+        SurveysApi.update(id, surveyData)
             .then(() => {
                 history.push(`/surveys/${id}`);
             })

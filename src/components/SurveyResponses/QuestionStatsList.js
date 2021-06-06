@@ -1,7 +1,8 @@
 import NumberAnswerStats from "./NumberAnswerStats/NumberAnswerStats";
 import {QuestionTypes} from "../../constants/Questions";
 import {Row} from "react-bootstrap";
-import TextAnswerStats from "./TextAnswerStats";
+import TextAnswerStats from "./TextAnwerStats/TextAnswerStats";
+import OneChoiceAnswerStats from "./OneChoiceAnswerStats";
 
 const QuestionStatsList = ({answersData, getQuestionByIndex}) => {
 
@@ -14,6 +15,9 @@ const QuestionStatsList = ({answersData, getQuestionByIndex}) => {
             }
             case QuestionTypes.SHORT_ANSWER: {
                 return <TextAnswerStats key={index} answerData={answerData} question={question} />;
+            }
+            case QuestionTypes.SELECT_ONE: {
+                return <OneChoiceAnswerStats key={index} answerData={answerData} question={question}/>
             }
             default: return <Row key={index}>Wrong question type!</Row>;
         }

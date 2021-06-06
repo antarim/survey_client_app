@@ -23,6 +23,10 @@ export const toResponseSubmitView = (survey, responseData, uniqueKey, anonymous)
                     answer["text_answer"] = responseData[question.uuid]
                     break;
                 }
+                case QuestionTypes.SELECT_ONE: {
+                    answer["text_answer"] = responseData[question.uuid]
+                    break;
+                }
                 default: break;
             }
 

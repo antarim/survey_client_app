@@ -4,7 +4,7 @@ import {ConfigProvider} from "antd";
 import ukUA from 'antd/lib/locale/uk_UA';
 
 import './App.css';
-import './components/styles/containers.css';
+import './assets/containers.css';
 import SurveysWrapper from "./containers/SurveysWrapper";
 import TakeSurveyWrapper from "./containers/TakeSurveyWrapper";
 import HomePage from "./containers/HomePage";
@@ -32,19 +32,24 @@ function App() {
         };
     }, []);
 
-    console.log(isAuthenticated);
+    console.log(`In App: ${isAuthenticated}`);
 
     return (
         <Router>
             <ConfigProvider locale={ukUA}>
-                <Container fluid className="wrapper noPaddingX">
+                <Container fluid className="wrapper no-padding-x">
                     {isLoading
                         ? (<LoadingSpinner/>)
                         : (
                             <Switch>
-                                <Route exact path="/" component={HomePage}/>
-                                <PrivateRoute path="/surveys" isAuthenticated={isAuthenticated}
-                                              component={SurveysWrapper}/>
+                                <Route exact path="/">
+                                    <HomePage setIsAuthenticated={setIsAuthenticated}/>
+                                </Route>
+                                <PrivateRoute
+                                    path="/surveys"
+                                    isAuthenticated={isAuthenticated}
+                                    component={SurveysWrapper}
+                                />
                                 <Route path="/take" component={TakeSurveyWrapper}/>
                                 <Route path="*" component={NotFoundPage}/>
                             </Switch>

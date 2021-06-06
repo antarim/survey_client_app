@@ -3,6 +3,7 @@ import {useState} from "react";
 import {ChartTypes} from "../../../constants/Charts";
 import NumberAnswerChart from "./NumberAnswerChart";
 import {range, round, mean, countBy} from "lodash";
+import './NumberAnswerStats.css';
 
 const NumberAnswerStats = ({answerData, question}) => {
     const [chartType, setChartType] = useState(ChartTypes.PIE_CHART);
@@ -73,7 +74,7 @@ const NumberAnswerStats = ({answerData, question}) => {
                         <Row className="answers-count">
                             Відповідей: {numberAnswers.length}
                             <br/>
-                            Середня значення: {averageValue}
+                            Середнє значення: {averageValue}
                         </Row>
                     </Col>
                 </Row>

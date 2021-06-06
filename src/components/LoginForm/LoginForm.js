@@ -1,43 +1,62 @@
-import {Button, Form} from "react-bootstrap";
+import {Alert, Button, Form} from "react-bootstrap";
 import AuthService from "../../services/authService";
-import {useState} from "react";
 import {useHistory} from "react-router-dom";
+import {useForm} from "react-hook-form";
+import {useState} from "react";
 
-const LoginForm = () => {
-    // TODO: Add validation
+import './LoginForm.css';
+
+const LoginForm = ({setIsAuthenticated}) => {
     const history = useHistory();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const {register, handleSubmit, formState: {errors}} = useForm();
+    const [isUnauthorized, setIsUnauthorized] = useState(false);
 
-    const handleLogin = event => {
-        event.preventDefault();
-        AuthService.login(username, password)
+    const onSubmit = credentials => {
+        AuthService.login(credentials)
             .then(() => {
+                // console.log(res);
+                setIsAuthenticated(true);
+                setIsUnauthorized(false);
                 history.push('/surveys/');
+            })
+            .catch(() => {
+                setIsUnauthorized(true);
             });
     }
 
     return (
-        <Form onSubmit={handleLogin}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email / Username</Form.Label>
+                <Form.Label className="login-label">Ім'я користувача*</Form.Label>
                 <Form.Control
-                    type="text"
-                    placeholder="example@gmail.com / username"
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
+                    placeholder="Username"
+                    {...register('username', {required: true, maxLength: 150})}
+                    isInvalid={!!errors.username}
                 />
+                <Form.Control.Feedback type="invalid">
+                    Please enter a username.
+                </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-                <Form.Label>Пароль</Form.Label>
+                <Form.Label className="login-label">Пароль*</Form.Label>
                 <Form.Control
                     type="password"
                     placeholder="Password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
+                    {...register('password', {required: true, maxLength: 150})}
+                    isInvalid={!!errors.password}
                 />
+                <Form.Control.Feedback type="invalid">
+                    Please enter a password.
+                </Form.Control.Feedback>
             </Form.Group>
+
+            {isUnauthorized && (
+                <Alert variant="danger">
+                    Username or password is incorrect!
+                </Alert>
+            )}
+
             <Button variant="primary" type="submit">
                 Увійти
             </Button>

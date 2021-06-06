@@ -2,25 +2,29 @@ import {Container} from "react-bootstrap";
 import {useParams} from "react-router-dom";
 import SurveyResponses from "../components/SurveyResponses/SurveyResponses";
 import useAxiosFetch from "../hooks/useAxiosFetch";
-import {RESPONSES_URL, SURVEYS_URL} from "../api/urls";
+import {SURVEYS_URL} from "../api/urls";
 import './SurveyResponsesContainer.css';
 import {toSurveyCamelCase} from "../helpers/surveyHelpers";
 import {toResponseCamelCase} from "../helpers/responseHelpers";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const SurveyResponsesContainer = () => {
     const {id} = useParams();
-    const {data: survey, surveyError, surveyIsLoading} = useAxiosFetch(SURVEYS_URL + id, 8000);
-    // Fix axios
-    const {data: responses, responsesError, responsesIsLoading} = useAxiosFetch(RESPONSES_URL + `?survey=${id}`, 8000);
+
+    const {data: survey, error, isLoading} = useAxiosFetch(SURVEYS_URL + `${id}/responses`)
 
     // Backend api calls and
     // hold state
     return (
         <Container className="survey-responses-container">
-            {responses && survey && <SurveyResponses
-                survey={toSurveyCamelCase(survey)}
-                responses={responses.map(res => toResponseCamelCase(res))}
-            />}
+            {isLoading && <LoadingSpinner/>}
+            {error && <div>{error}</div>}
+            {survey && (
+                <SurveyResponses
+                    survey={toSurveyCamelCase(survey)}
+                    responses={survey.responses.map(res => toResponseCamelCase(res))}
+                />
+            )}
         </Container>
     );
 }

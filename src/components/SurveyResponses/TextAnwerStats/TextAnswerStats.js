@@ -1,4 +1,5 @@
 import {Col, Row} from "react-bootstrap";
+import './TextAnwerStats.css';
 
 const TextAnswerStats = ({answerData, question}) => {
     const textAnswers = [];
@@ -18,11 +19,17 @@ const TextAnswerStats = ({answerData, question}) => {
                     Відповідей: {textAnswers.length}
                 </Row>
                 {textAnswers.length > 0
-                    && textAnswers.map((answer, index) => (
+                    ? textAnswers.map((answer, index) => (
                         <Row key={index} className="text-answer">
                             {answer}
                         </Row>
-                    ))}
+                    ))
+                    : (
+                        <Row className="no-answers">
+                            Немає відповідей
+                        </Row>
+                    )
+                }
             </Col>
         </Row>
     );

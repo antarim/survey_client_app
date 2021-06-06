@@ -16,14 +16,14 @@
     border-radius: 5px;
 }
 
-.survey-successful {
+.survey-message {
     font-size: 20px;
     padding: 10px;
     border: 1px solid #c4c4c4;
     border-radius: 5px;
 }
 
-.survey-successful-container {
+.survey-message-container {
     padding: 10px;
 }
 

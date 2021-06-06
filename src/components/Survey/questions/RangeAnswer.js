@@ -4,7 +4,7 @@ import React, {useState} from "react";
 
 import './RangeAnswer.css';
 
-const RangeAnswer = ({uuid, rangeMin, rangeMax, rangeStep, prompt, handleChange, isDisabled}) => {
+const RangeAnswer = ({uuid, rangeMin, rangeMax, rangeStep, prompt, answerRequired, handleChange, isDisabled}) => {
     const [value, setValue] = useState(rangeMin);
     const onCheckChange = (e) => {
         setValue(e.target.value);
@@ -16,7 +16,7 @@ const RangeAnswer = ({uuid, rangeMin, rangeMax, rangeStep, prompt, handleChange,
         <Form.Group controlId={uuid}>
             <Row className="no-gutters align-items-center justify-content-center">
                 <Col sm={12}>
-                    <Form.Label>{prompt}</Form.Label>
+                    <Form.Label>{prompt}{answerRequired && '*'}</Form.Label>
                 </Col>
                 <Col sm={11}>
                     <RangeSlider

@@ -3,7 +3,7 @@ import SurveyBuilder from "../components/SurveyBuilder";
 import Question from "../models/Question";
 import moment from "moment";
 import {toSurveySubmitView} from "../helpers/surveyHelpers";
-import {surveys} from "../api";
+import SurveysApi from "../api";
 
 const SurveyCreateContainer = () => {
     const history = useHistory();
@@ -18,7 +18,7 @@ const SurveyCreateContainer = () => {
     const handleSurveySubmit = (survey) => {
         const surveyData = toSurveySubmitView(survey);
 
-        surveys.create(surveyData)
+        SurveysApi.create(surveyData)
             .then(() => {
                 history.push('/surveys');
             })

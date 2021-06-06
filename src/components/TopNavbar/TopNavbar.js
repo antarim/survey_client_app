@@ -19,9 +19,6 @@ const TopNavbar = () => {
                         <LinkContainer to="/surveys">
                             <Nav.Link>Анкети</Nav.Link>
                         </LinkContainer>
-                        {/*<LinkContainer to="/responses">*/}
-                        {/*    <Nav.Link>Результати</Nav.Link>*/}
-                        {/*</LinkContainer>*/}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

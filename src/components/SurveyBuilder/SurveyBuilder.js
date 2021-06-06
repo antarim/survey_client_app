@@ -7,7 +7,7 @@ import {Button, Container, Row} from "react-bootstrap";
 import QuestionList from "./QuestionList";
 
 import './SurveyBuilder.css';
-import '../styles/inputs.css';
+import '../../assets/inputs.css';
 
 const SurveyBuilder = ({initTitle, initDate, initQuestions, handleSurveySubmit}) => {
     const [title, handleChangeTitle] = useInputValue(initTitle);
@@ -22,7 +22,7 @@ const SurveyBuilder = ({initTitle, initDate, initQuestions, handleSurveySubmit})
         questions.forEach((question, index) => question.order = index)
     }, [questions]);
 
-    const handleDateChange = (value, dateString) => {
+    const handleDateChange = (value) => {
         setDateRange(value);
     }
 

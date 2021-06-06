@@ -1,5 +1,3 @@
-import {surveys} from "./surveys";
+import SurveysApi from "./surveys";
 
-export {
-    surveys
-}
+export default new SurveysApi();

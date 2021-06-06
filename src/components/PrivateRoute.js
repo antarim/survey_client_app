@@ -6,7 +6,6 @@ export const PrivateRoute = ({component: Component, isAuthenticated, ...rest}) =
         <Route
             {...rest}
             render={props => {
-                console.log(`in route ${isAuthenticated}`);
                 return isAuthenticated
                     ? (<Component/>)
                     : (<Redirect to={{

@@ -1,15 +1,14 @@
 import {Form, Row} from "react-bootstrap";
 
-const SingleChoice = ({uuid, prompt, choiceSet, handleChange, isDisabled }) => {
+const SingleChoice = ({uuid, prompt, choiceSet, answerRequired, handleChange, isDisabled }) => {
     const onCheckChange = (e) => {
-
-        handleChange(e.target.name, Number(e.target.value))
+        handleChange(e.target.name, e.target.value)
     }
 
     return (
-        <Form.Group controlId={uuid}>
+        <Form.Group>
             <Row className="no-gutters">
-                <Form.Label>{prompt}</Form.Label>
+                <Form.Label>{prompt}{answerRequired && '*'}</Form.Label>
             </Row>
             <Row className="no-gutters">
                 {choiceSet.map((choice, i) => (
@@ -17,13 +16,17 @@ const SingleChoice = ({uuid, prompt, choiceSet, handleChange, isDisabled }) => {
                         disabled={isDisabled}
                         key={i}
                         inline
-                        label={i + 1}
+                        label={choice.text}
                         type="radio"
                         name={uuid}
-                        value={i + 1}
+                        value={choice.text}
                         onChange={onCheckChange}
+                        // checked={}
                     />
                 ))}
+            </Row>
+            <Row className="no-gutters">
+
             </Row>
         </Form.Group>
     );

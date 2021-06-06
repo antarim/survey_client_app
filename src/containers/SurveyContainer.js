@@ -6,14 +6,16 @@ import {useEffect, useState} from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 import {toSurveyCamelCase} from "../helpers/surveyHelpers";
 import {toResponseSubmitView} from "../helpers/responseHelpers";
-import axios from "axios";
 import SurveySuccessful from "../components/Survey/SurveySuccessful";
+import axiosInstance from "../api/axios";
+import SubmitError from "../components/Survey/questions/SubmitError";
 
 const SurveyContainer = ({id, uniqueKey, anonymous}) => {
     const {data, error, isLoading} = useAxiosFetch(SURVEYS_URL + id, 8000);
     const [survey, setSurvey] = useState();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [submitError, setSubmitError] = useState(false);
     const [responseData, setResponseData] = useState();
 
     // Converting data to camel case when received
@@ -52,16 +54,25 @@ const SurveyContainer = ({id, uniqueKey, anonymous}) => {
 
         setIsSubmitting(true);
 
-        axios.post(RESPONSES_URL, JSON.stringify(response), {
+        axiosInstance.post(RESPONSES_URL, JSON.stringify(response), {
             headers: {"Content-Type": "application/json"}
         })
             .then(() => {
                 setSubmitted(true);
-                console.log("Submit successful!");
+                setSubmitError(false);
             })
-            .catch(err => {
-                console.log(err.message);
+            .catch(() => {
+                setSubmitted(false);
+                setSubmitError(true);
             })
+    }
+
+    if (submitError) {
+        return (
+            <Container>
+                <SubmitError/>
+            </Container>
+        );
     }
 
     if (submitted) {

@@ -6,7 +6,7 @@ import SurveyContainer from "./SurveyContainer";
 
 const RegularSurveyContainer = () => {
     const {id, key} = useParams();
-    const {data: uniqueKey, error, isLoading} = useAxiosFetch(UNIQUE_KEY_CHECK_URL + key, 8000);
+    const {data: uniqueKey, error, isLoading} = useAxiosFetch(UNIQUE_KEY_CHECK_URL + key);
 
     return (
         <>

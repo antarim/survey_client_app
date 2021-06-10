@@ -11,7 +11,7 @@ import axiosInstance from "../api/axios";
 import SubmitError from "../components/Survey/questions/SubmitError";
 
 const SurveyContainer = ({id, uniqueKey, anonymous}) => {
-    const {data, error, isLoading} = useAxiosFetch(SURVEYS_URL + id, 8000);
+    const {data, error, isLoading} = useAxiosFetch(SURVEYS_URL + id);
     const [survey, setSurvey] = useState();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);

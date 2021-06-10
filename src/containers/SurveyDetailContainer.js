@@ -7,7 +7,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 
 const SurveyDetailContainer = () => {
     const {id} = useParams();
-    const {data: survey, error, isLoading} = useAxiosFetch(SURVEYS_URL + id, 8000);
+    const {data: survey, error, isLoading} = useAxiosFetch(SURVEYS_URL + id);
     const history = useHistory();
 
     const handleDelete = () => {

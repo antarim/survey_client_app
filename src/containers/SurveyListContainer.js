@@ -6,7 +6,7 @@ import useAxiosFetch from "../hooks/useAxiosFetch";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const SurveyListContainer = () => {
-    const {data: surveys, error, isLoading} = useAxiosFetch(SURVEYS_URL, 8000);
+    const {data: surveys, error, isLoading} = useAxiosFetch(SURVEYS_URL);
 
     return (
         <Container>

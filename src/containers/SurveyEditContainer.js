@@ -10,7 +10,7 @@ import SurveysApi from "../api";
 
 const SurveyEditContainer = () => {
     const {id} = useParams();
-    const {data: survey, error, isLoading} = useAxiosFetch(SURVEYS_URL + id, 5000);
+    const {data: survey, error, isLoading} = useAxiosFetch(SURVEYS_URL + id);
     const history = useHistory();
 
     const handleSurveySubmit = (survey) => {

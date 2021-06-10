@@ -33,7 +33,7 @@ const Survey = ({survey, onSubmit, isDisabled}) => {
                         disabled={isDisabled}
                         type="submit"
                     >
-                        Submit
+                        Відправити
                     </Button>
                 </Row>
             </Form>

@@ -32,8 +32,6 @@ function App() {
         };
     }, []);
 
-    console.log(`In App: ${isAuthenticated}`);
-
     return (
         <Router>
             <ConfigProvider locale={ukUA}>

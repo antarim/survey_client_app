@@ -10,7 +10,7 @@ import {toSurveyCamelCase} from "../helpers/surveyHelpers";
 const SurveyPreviewContainer = () => {
     const {id} = useParams();
     const [survey, setSurvey] = useState();
-    const {data, error, isLoading} = useAxiosFetch(SURVEYS_URL + id, 8000);
+    const {data, error, isLoading} = useAxiosFetch(SURVEYS_URL + id);
 
     useEffect(() => {
         if (data) {

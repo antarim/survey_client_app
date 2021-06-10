@@ -2,10 +2,14 @@ import {Button, Col, Row} from "react-bootstrap";
 import TextArea from "antd/lib/input/TextArea";
 import {useState} from "react";
 import axiosInstance from "../../api/axios";
+import {Alert} from "antd";
 
 const MailInput = ({survey}) => {
     const [textValue, setTextValue] = useState('');
     const [invalidEmails, setInvalidEmails] = useState([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [error, setError] = useState();
 
     function emailIsValid(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -20,19 +24,30 @@ const MailInput = ({survey}) => {
             if (emailIsValid(email)) {
                 validEmails.push(email)
             } else {
+                setError({failed_validation: email})
                 setInvalidEmails([...invalidEmails, email]);
             }
         });
+
+        if (emails.length !== validEmails.length) {
+            return
+        }
+
+        setIsSubmitting(true);
 
         axiosInstance.post('send_emails/', JSON.stringify({
             survey: survey.id,
             valid_emails: validEmails
         }))
-            .then(res => {
-                console.log(res);
-        })
+            .then(() => {
+                setTextValue('');
+                setIsSubmitting(false);
+                setIsSubmitted(true);
+            })
             .catch(err => {
-                console.log(err.response.data);
+                setError(err.response.data);
+                setIsSubmitting(false);
+                setIsSubmitted(false);
             })
     }
 
@@ -43,17 +58,26 @@ const MailInput = ({survey}) => {
             </Row>
 
             <Row className="no-gutters mail-row">
-
                 <TextArea
                     className="mail-textarea"
                     value={textValue}
                     placeholder={'example@example.com\nexample@example.com'}
                     maxLength={1000}
+                    disabled={isSubmitting}
                     autoSize={{minRows: 3}}
-                    onChange={e => setTextValue(e.target.value)}
+                    onChange={e => {
+                        setError(undefined);
+                        setIsSubmitted(false);
+                        setTextValue(e.target.value);
+                    }}
                 />
             </Row>
-
+            {isSubmitted && <Row className="no-gutters ">
+                <Alert message="Email(и) успішно відправлено" type="success"/>
+            </Row>}
+            {error && <Row className="no-gutters ">
+                <Alert message={`Помилка ${error.failed_validation}`} type="error"/>
+            </Row>}
             <Row className="no-gutters send-button">
                 <Col lg={6}>
                     <Button block variant="info" onClick={handleSubmit}>

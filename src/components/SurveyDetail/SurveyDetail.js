@@ -3,6 +3,7 @@ import SurveyDetailDateTime from './SurveyDetailDateTime';
 import SurveyDetailButtons from './SurveyDetailButtons';
 
 import './SurveyDetail.css';
+import MailInput from "./MailInput";
 
 const SurveyDetail = ({survey, handleDelete, handleEdit, handlePreview, handleResponses}) => {
     return (
@@ -19,12 +20,18 @@ const SurveyDetail = ({survey, handleDelete, handleEdit, handlePreview, handleRe
                         start_date={survey.start_date}
                         end_date={survey.end_date}
                     />
-                    <SurveyDetailButtons
-                        handleSurveyDelete={handleDelete}
-                        handleSurveyEdit={handleEdit}
-                        handleSurveyPreview={handlePreview}
-                        handleSurveyResponses={handleResponses}
-                    />
+
+                    <Row>
+                        <MailInput survey={survey}/>
+
+                        <SurveyDetailButtons
+                            handleSurveyDelete={handleDelete}
+                            handleSurveyEdit={handleEdit}
+                            handleSurveyPreview={handlePreview}
+                            handleSurveyResponses={handleResponses}
+                        />
+                    </Row>
+
                 </Col>
             </Row>
         </Container>

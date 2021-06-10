@@ -23,9 +23,9 @@ const useAxiosFetch = (url, timeout = 8000) => {
                 setError(true);
                 setIsLoading(false);
                 if (axios.isCancel(e)) {
-                    console.log(`Request cancelled: ${e.message}`);
+                    console.error(`Request cancelled: ${e.message}`);
                 } else {
-                    console.log(`Another error happened: ${e.message}`);
+                    console.error(`Another error happened: ${e.message}`);
                 }
             }
         });

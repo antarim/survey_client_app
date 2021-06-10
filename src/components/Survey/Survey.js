@@ -2,14 +2,14 @@ import {Button, Container, Form, Row} from "react-bootstrap";
 
 import './Survey.css';
 import QuestionWrapper from "./QuestionWrapper";
+import {useForm} from "react-hook-form";
 
-const Survey = ({survey, handleSubmit, handleChange, isDisabled}) => {
-    // TODO: Validation of all received inputs
-    //  (either by name or something else)
+const Survey = ({survey, onSubmit, isDisabled}) => {
+    const {control, register, handleSubmit, formState: {errors}} = useForm();
 
     return (
         <Container className="survey">
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit(onSubmit)}>
 
                 <header className="survey-title">
                     <h3>{survey.title}</h3>
@@ -17,13 +17,14 @@ const Survey = ({survey, handleSubmit, handleChange, isDisabled}) => {
 
                 <div>
                     {survey.questionSet.map(question => (
-                        <Form.Group key={question.id}>
-                            <QuestionWrapper
-                                question={question}
-                                handleChange={handleChange}
-                                isDisabled={isDisabled}
-                            />
-                        </Form.Group>
+                        <QuestionWrapper
+                            key={question.id}
+                            control={control}
+                            register={register}
+                            errors={errors}
+                            question={question}
+                            isDisabled={isDisabled}
+                        />
                     ))}
                 </div>
 

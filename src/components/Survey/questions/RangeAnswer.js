@@ -1,32 +1,47 @@
 import {Col, Form, Row} from "react-bootstrap";
-import RangeSlider from 'react-bootstrap-range-slider';
+import {Controller} from "react-hook-form";
 import React, {useState} from "react";
 
 import './RangeAnswer.css';
+import AnswerAlert from "../AnswerAlert";
 
-const RangeAnswer = ({uuid, rangeMin, rangeMax, rangeStep, prompt, answerRequired, handleChange, isDisabled}) => {
-    const [value, setValue] = useState(rangeMin);
-    const onCheckChange = (e) => {
-        setValue(e.target.value);
-        // Passing question uuid as target.name
-        handleChange(uuid, Number(e.target.value))
-    }
+const RangeAnswer = ({
+                         uuid,
+                         rangeMin,
+                         rangeMax,
+                         rangeStep,
+                         control,
+                         prompt,
+                         errors,
+                         answerRequired,
+                         isDisabled
+                     }) => {
+    const [value, setValue] = useState(0);
 
     return (
         <Form.Group controlId={uuid}>
             <Row className="no-gutters align-items-center justify-content-center">
                 <Col sm={12}>
-                    <Form.Label>{prompt}{answerRequired && '*'}</Form.Label>
+                    <Form.Label className="question-prompt">{prompt}{answerRequired && '*'}</Form.Label>
                 </Col>
                 <Col sm={11}>
-                    <RangeSlider
-                        disabled={isDisabled}
+                    <Controller
                         name={uuid}
-                        min={rangeMin}
-                        max={rangeMax}
-                        step={rangeStep}
-                        value={value}
-                        onChange={onCheckChange}
+                        control={control}
+                        rules={{required: answerRequired, validate: value => value >= rangeMin && value <= rangeMax}}
+                        render={({field}) => <Form.Control
+                            type="range"
+                            {...field}
+                            disabled={isDisabled}
+                            min={rangeMin}
+                            value={value}
+                            onChange={e => {
+                                setValue(parseInt(e.target.value));
+                                field.onChange(parseInt(e.target.value));
+                            }}
+                            max={rangeMax}
+                            step={rangeStep}
+                        />}
                     />
                 </Col>
                 <Col sm={1} className="text-center">
@@ -37,6 +52,7 @@ const RangeAnswer = ({uuid, rangeMin, rangeMax, rangeStep, prompt, answerRequire
                     </Row>
                 </Col>
             </Row>
+            {errors[uuid] ? <AnswerAlert message={'Будь ласка оберіть відповідь'}/> : ''}
         </Form.Group>
     );
 }

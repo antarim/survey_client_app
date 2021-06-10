@@ -5,19 +5,24 @@ import RangeAnswer from "./questions/RangeAnswer";
 
 
 const questionMap = {
-    [QuestionTypes.SHORT_ANSWER] : (props, handleChange, isDisabled) => {
-        return <ShortAnswer {...props} handleChange={handleChange} isDisabled={isDisabled}/>
+    [QuestionTypes.SHORT_ANSWER]: (question, props) => {
+        return <ShortAnswer {...question} {...props}/>
     },
-    [QuestionTypes.SELECT_ONE] : (props, handleChange, isDisabled) => {
-        return <SingleChoice {...props} handleChange={handleChange} isDisabled={isDisabled}/>;
+    [QuestionTypes.SELECT_ONE]: (question, props) => {
+        return <SingleChoice {...question}{...props}/>;
     },
-    [QuestionTypes.RANGE] : (props, handleChange, isDisabled) => {
-        return <RangeAnswer {...props} handleChange={handleChange} isDisabled={isDisabled}/>;
+    [QuestionTypes.RANGE]: (question, props) => {
+        return <RangeAnswer {...question} {...props}/>;
     }
 }
 
-const QuestionWrapper = ({question, handleChange, isDisabled}) => {
-    const QuestionComponent = questionMap[question.type](question, handleChange, isDisabled);
+const QuestionWrapper = ({question, isDisabled, control, register, errors}) => {
+    const QuestionComponent = questionMap[question.type](question, {
+        isDisabled: isDisabled,
+        control: control,
+        register: register,
+        errors: errors
+    });
 
     return (
         <div className="survey-section">

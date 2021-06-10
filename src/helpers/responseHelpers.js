@@ -12,8 +12,6 @@ export const toResponseSubmitView = (survey, responseData, uniqueKey, anonymous)
                 "question_type": question.type,
                 "question_text": question.prompt,
             }
-            // TODO: Make as a separate method and
-            //  validate each type
             switch (question.type) {
                 case QuestionTypes.RANGE: {
                     answer["number_answer"] = Number(responseData[question.uuid])
@@ -29,7 +27,6 @@ export const toResponseSubmitView = (survey, responseData, uniqueKey, anonymous)
                 }
                 default: break;
             }
-
             return answer;
         })
     }

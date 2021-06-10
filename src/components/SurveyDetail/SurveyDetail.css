@@ -11,3 +11,27 @@
 .survey-detail .row {
     margin-top: 5px;
 }
+
+.mail-row {
+    width: 100%;
+    /*width: 300px;*/
+}
+
+.mail-textarea {
+    font-size: 20px;
+    width: 100%;
+}
+
+.send-button {
+    padding-top: 6px;
+}
+
+.detail-head-buttons {
+    padding-top: 28px;
+}
+
+@media only screen and (max-width: 992px) {
+    .detail-head-buttons {
+        padding-top: 6px;
+    }
+}

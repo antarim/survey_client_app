@@ -16,7 +16,6 @@ const SurveyContainer = ({id, uniqueKey, anonymous}) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [submitError, setSubmitError] = useState(false);
-    const [responseData, setResponseData] = useState();
 
     // Converting data to camel case when received
     useEffect(() => {
@@ -27,30 +26,8 @@ const SurveyContainer = ({id, uniqueKey, anonymous}) => {
         }
     }, [data]);
 
-
-    useEffect(() => {
-        if (survey) {
-            // Extracting survey question uuid into responseData state
-            // responseData = { uuid1: value, uuid2: value2 , ... }
-            setResponseData(
-                survey.questionSet.reduce((acc, question) =>
-                    ({...acc, [question.uuid]: ''}), {})
-            )
-        }
-        return () => {
-        };
-    }, [survey]);
-
-    const handleChange = (uuid, value) => {
-        setResponseData({
-            ...responseData,
-            [uuid]: value
-        })
-    }
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        const response = toResponseSubmitView(survey, responseData, uniqueKey, anonymous);
+    const onSubmit = data => {
+        const response = toResponseSubmitView(survey, data, uniqueKey, anonymous);
 
         setIsSubmitting(true);
 
@@ -89,8 +66,7 @@ const SurveyContainer = ({id, uniqueKey, anonymous}) => {
             {error && <div>{error}</div>}
             {survey && <Survey
                 survey={survey}
-                handleSubmit={handleSubmit}
-                handleChange={handleChange}
+                onSubmit={onSubmit}
                 isDisabled={isSubmitting}
             />}
         </Container>

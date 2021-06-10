@@ -10,12 +10,12 @@ const HomePage = ({setIsAuthenticated}) => {
             <Container className="home-page-container">
                 <Container className="home-block" fluid="lg">
                     <Row>
-                        <Col className="home-logo">
+                        <Col sm={6} className="home-logo">
                             <h2>
                                 Nuwm Survey
                             </h2>
                         </Col>
-                        <Col className="login">
+                        <Col sm={6} className="login">
                             <LoginForm
                                 setIsAuthenticated={setIsAuthenticated}
                             />

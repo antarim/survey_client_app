@@ -35,3 +35,18 @@
     border: 1px solid #c4c4c4;
 }
 
+.question-prompt {
+    font-size: 16px;
+}
+
+.answer-alert {
+    font-size: 14px;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    border-radius: 5px;
+}
+
+.alert-message{
+    padding: 5px;
+}

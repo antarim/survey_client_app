@@ -1,4 +1,4 @@
-import {Alert, Button, Form} from "react-bootstrap";
+import {Alert, Button, Form, Row} from "react-bootstrap";
 import AuthService from "../../services/authService";
 import {useHistory} from "react-router-dom";
 import {useForm} from "react-hook-form";
@@ -56,10 +56,11 @@ const LoginForm = ({setIsAuthenticated}) => {
                     Username or password is incorrect!
                 </Alert>
             )}
-
-            <Button variant="primary" type="submit">
-                Увійти
-            </Button>
+            <Row className="justify-content-center">
+                <Button variant="primary" type="submit">
+                    Увійти
+                </Button>
+            </Row>
         </Form>
     );
 }

@@ -1,6 +1,7 @@
 import {Col, Form, Row} from "react-bootstrap";
 import {Controller} from "react-hook-form";
 import React, {useState} from "react";
+import {Slider} from 'antd';
 
 import './RangeAnswer.css';
 import AnswerAlert from "../AnswerAlert";
@@ -28,19 +29,20 @@ const RangeAnswer = ({
                     <Controller
                         name={uuid}
                         control={control}
-                        rules={{required: answerRequired, validate: value => value >= rangeMin && value <= rangeMax}}
-                        render={({field}) => <Form.Control
-                            type="range"
+                        rules={{
+                            required: answerRequired,
+                            validate: value => value >= rangeMin && value <= rangeMax
+                        }}
+                        render={({field}) => <Slider
                             {...field}
-                            disabled={isDisabled}
                             min={rangeMin}
-                            value={value}
-                            onChange={e => {
-                                setValue(parseInt(e.target.value));
-                                field.onChange(parseInt(e.target.value));
-                            }}
                             max={rangeMax}
                             step={rangeStep}
+                            onChange={val => {
+                                setValue(val);
+                                field.onChange(val);
+                            }}
+                            disabled={isDisabled}
                         />}
                     />
                 </Col>

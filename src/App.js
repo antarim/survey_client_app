@@ -13,6 +13,7 @@ import {useEffect, useState} from "react";
 import axiosInstance from "./api/axios";
 import {PrivateRoute} from "./components/PrivateRoute";
 import LoadingSpinner from "./components/LoadingSpinner";
+import {removeTokens} from "./services/tokenService";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -25,6 +26,7 @@ function App() {
                 setIsLoading(false);
             })
             .catch(() => {
+                removeTokens();
                 setIsAuthenticated(false);
                 setIsLoading(false);
             })
